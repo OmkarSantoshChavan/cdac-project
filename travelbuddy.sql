@@ -112,8 +112,8 @@ insert into  facility(furnished,parking,security_guard,lift,cctv,pid)
 values('No','Yes','No','No','Yes',1);
 
 insert into photos(photos,pid)
-values(load_file('D:/project/photos/silveroak1.jpeg'),1),
-(load_file('D:/project/photos/silveroak2.jpeg'),1);
+values(load_file('D:/cdac-project/Photos/Silver_oak1.jpeg'),1),
+(load_file('D:/cdac-project/Photos/silver_oak2.jpeg'),1);
 
 
 
