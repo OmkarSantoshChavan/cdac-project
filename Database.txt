@@ -1,0 +1,28 @@
+facility_master
+facility_id 1           2           3
+name        furnished   AC         cook
+  
+property_facilty
+prid - 1     1    2   1
+fid  - 1     2    1   3
+
+
+area
+areaid - PK
+area name
+city
+pincode
+
+
+customer
+- cid
+- address
+- areaid
+
+
+prperty
+id
+name
+desc
+address
+areaid
