@@ -1,0 +1,12 @@
+create table users
+(
+userid int not null AUTO_INCREMENT,
+name varchar(20) not null,
+email varchar(20) not null unique,
+password varchar(20) not null,
+contact_no varchar(10),
+address varchar(30),
+aadhar_card varchar(12) not null unique,
+role varchar(10) not null check(role IN('admin','customer','owner')),
+primary key(userid)
+);

@@ -4,7 +4,7 @@ create table users
 (
 userid int not null AUTO_INCREMENT,
 name varchar(20) not null,
-email varchar(20) not null unique,
+email varchar(30) not null unique,
 password varchar(20) not null,
 contact_no varchar(10),
 address varchar(30),
@@ -93,7 +93,7 @@ primary key(pay_id),
 foreign key(bid) references booking(bid)
 );
 
-insert into users
+insert into users(name,email,password,contact_no,address,aadhar_card,role)
 values('Omkar','omkarschavan4@gmail.com','Omkar@123','9689829538','satara','635132326563','admin'),
 ('Akshay','akshaysalunkhe420@gmail.com','Akshay@123','9861339854','sambhajinagar','985432326563','owner'),
 ('Suraj','surajnade420@gmail.com','Suraj@123','9845549854','latur','23542326563','customer'),
