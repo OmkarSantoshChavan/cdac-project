@@ -12,6 +12,7 @@ aadhar_card varchar(12) not null unique,
 role varchar(15),
 primary key(userid)
 );
+alter table users AUTO_INCREMENT=100;
 
 create table area
 (
@@ -112,8 +113,8 @@ insert into  facility(furnished,parking,security_guard,lift,cctv,pid)
 values('No','Yes','No','No','Yes',1);
 
 insert into photos(photos,pid)
-values(load_file('D:/cdac-project/Photos/Silver_oak1.jpeg'),1),
-(load_file('D:/cdac-project/Photos/silver_oak2.jpeg'),1);
+values(load_file('D:/project_online-accommodation-portal/cdac-project/Photos/Silver_oak1.jpeg'),1),
+(load_file('D:/project_online-accommodation-portal/cdac-project/Photos/silver_oak2.jpeg'),1);
 
 
 
