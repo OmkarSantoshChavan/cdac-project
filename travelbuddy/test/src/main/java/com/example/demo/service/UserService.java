@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,13 @@ public class UserService {
 	@Autowired
 	UserRepository urepo;
 	
-	public List<Users> getAll(){
-		return urepo.findAll();
-	}
+	 public Optional<Users> loginRequest(String email, String password) {
+		 
+ 		return urepo.Login(email, password); 						
+	 }
 	
-	public Users addUser(Users u) {		
+	public Users RegisterUser(Users u) {	
+		
 		return urepo.save(u);	
 	}
 }

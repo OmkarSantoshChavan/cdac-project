@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.LoginRequest;
 import com.example.demo.pojos.Users;
 import com.example.demo.service.UserService;
 
@@ -17,13 +18,14 @@ public class UserController {
 	@Autowired
 	UserService us;
 	
-	@GetMapping("/alluser")
-	public List<Users> getAll(){
-		return us.getAll();
+	@PostMapping("/login")
+	public Object Login(@RequestBody LoginRequest request)
+	{
+		return us.loginRequest(request.getEmail(),request.getPassword());
 	}
 	
-	@PostMapping("/addUser")
-	public Users addUser(@RequestBody Users u) {
-		return us.addUser(u);	
+	@PostMapping("/registeruser")
+	public Users RegisterUser(@RequestBody Users u) {
+		return us.RegisterUser(u);	
 	}
 }
