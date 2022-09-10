@@ -8,22 +8,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.pojos.Users;
-import com.example.demo.service.UserService;
-
+import com.example.demo.pojos.Area;
+import com.example.demo.service.AreaService;
 
 @RestController
-public class UserController {
+public class AreaController {
 	@Autowired
-	UserService us;
+	AreaService as;
 	
-	@GetMapping("/alluser")
-	public List<Users> getAll(){
-		return us.getAll();
+	@GetMapping("/allarea")
+	public List<Area> getAll(){
+		return as.getAll();
 	}
 	
-	@PostMapping("/addUser")
-	public Users addUser(@RequestBody Users u) {
-		return us.addUser(u);	
+	@PostMapping("/addArea")
+	public Area addArea(@RequestBody Area a) {
+		return as.addArea(a);	
 	}
 }
