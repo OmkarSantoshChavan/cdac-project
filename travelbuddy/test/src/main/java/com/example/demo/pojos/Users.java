@@ -82,12 +82,7 @@ public class Users {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getAdharCard() {
-		return aadhar_card;
-	}
-	public void setAdharCard(String aadhar_card) {
-		this.aadhar_card = aadhar_card;
-	}
+	
 	public Role getRole() {
 		return role;
 	}
@@ -99,5 +94,11 @@ public class Users {
 		return "User [userid=" + userid + ", name=" + name + ", email=" + email + ", password=" + password
 				+ ", contact_no=" + contact_no + ", address=" + address + ", aadhar_card=" + aadhar_card + ", role=" + role
 				+ "]";
+	}
+	public String getAadhar_card() {
+		return aadhar_card;
+	}
+	public void setAadhar_card(String aadhar_card) {
+		this.aadhar_card = aadhar_card;
 	} 
 }
