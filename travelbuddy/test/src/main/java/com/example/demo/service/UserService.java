@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.customexception.CustomerHandlingException;
 import com.example.demo.pojos.Users;
 import com.example.demo.repositories.UserRepository;
 
@@ -18,7 +19,8 @@ public class UserService {
 	
 	 public Optional<Users> loginRequest(String email, String password) {
 		 
- 		return urepo.Login(email, password); 						
+ 		return Optional.ofNullable(urepo.Login(email, password)
+ 				.orElseThrow(() -> new CustomerHandlingException("Invalid Credentials!!!!")));						
 	 }
 	
 	public Users RegisterUser(Users u) {	

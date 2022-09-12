@@ -13,7 +13,7 @@ import com.example.demo.dto.LoginRequest;
 import com.example.demo.pojos.Users;
 import com.example.demo.service.UserService;
 
-
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @CrossOrigin(origins = "http://localhost:3000/")
 public class UserController {
