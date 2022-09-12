@@ -87,9 +87,6 @@ function Registeruser() {
                                     
                                 </div>
                             </form>
-    <p>{user.aadhar_card}
-
-    </p>
                         </div>
                     </div>
                 </div>
