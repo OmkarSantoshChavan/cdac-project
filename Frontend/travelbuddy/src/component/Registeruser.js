@@ -68,39 +68,39 @@ function Registeruser() {
                     <div>
                         <form onSubmit={e => FormHandle(e)}  style={{textAlign: 'justify'}}>
 
-                            <div class="form-group">
-                                <label for="name"> Name</label>
+                            <div class="form-group" style={{ margin: '10px' }}>
+                                <label for="name" style={{ margin: '29px' }}> Name</label>
                                 <input type="text" class="form-control" name="name" placeholder="Enter name" value={name} onChange={(e) => onInputChange(e)} />
                             </div>
 
-                            <div class="form-group">
-                                <label for="email">Email</label>
+                            <div class="form-group" style={{ margin: '10px' }}>
+                                <label for="email" style={{ margin: '31px' }}>Email</label>
                                 <input type="email" class="form-control" name="email" placeholder="abc@gmail.com" value={email} onChange={(e) => onInputChange(e)} />
                             </div>
 
-                            <div class="form-group">
-                                <label for="Password">Password</label>
+                            <div class="form-group" style={{ margin: '10px' }}>
+                                <label for="Password" style={{ margin: '17px' }}>Password</label>
                                 <input type="password" class="form-control" name="password" placeholder=" " value={password} onChange={(e) => onInputChange(e)} />
                             </div>
 
-                            <div class="form-group">
-                                <label for="contact_no">Contact no</label>
+                            <div class="form-group" style={{ margin: '10px' }}>
+                                <label for="contact_no" style={{ margin: '11px' }}>Contact no</label>
                                 <input type="text" class="form-control" name="contact_no" placeholder=" " value={contact_no} onChange={(e) => onInputChange(e)} />
                             </div>
 
-                            <div class="form-group">
-                                <label for="address">Address</label>
+                            <div class="form-group" style={{ margin: '10px' }}>
+                                <label for="address" style={{ margin: '21px' }}>Address</label>
                                 <input type="text" class="form-control" name="address" placeholder="Enter address" value={address} onChange={(e) => onInputChange(e)} />
                             </div>
 
-                            <div class="form-group">
-                                <label for="aadhar_card">Aadhar_card</label>
+                            <div class="form-group" style={{ margin: '10px' }}>
+                                <label for="aadhar_card" style={{ margin: '5px' }}>Aadhar_card</label>
                                 <input type="text" class="form-control" name="aadhar_card" placeholder="xxxxxxxxxxxx" value={aadhar_card} onChange={(e) => onInputChange(e)} />
                             </div>
 
-                            <div class="form-group role-input-box">
-                                <label htmlFor="role">Role :</label>
-                                <div className="field-radiobutton">
+                            <div class="form-group role-input-box" style={{ margin: '10px' }}>
+                                <label htmlFor="role" style={{ margin: '10px' }}>Role :</label>
+                                <div className="field-radiobutton" style={{ margin: '10px' }}>
                                     <RadioButton
                                         inputId="role1"
                                         name="owner"
@@ -110,7 +110,7 @@ function Registeruser() {
                                     />
                                     <label htmlFor="role1">Owner</label>
                                 </div>
-                                <div className="field-radiobutton">
+                                <div className="field-radiobutton" style={{ margin: '10px' }}>
                                     <RadioButton
                                         inputId="role2"
                                         name="customer"

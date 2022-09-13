@@ -60,7 +60,7 @@ function Homepage(props) {
 
     return <>
         <div>
-            <h1>Welcome to Homepage</h1>
+            <h1>Welcome to Travelbuddy</h1>
         </div>
         <div>
             <div className="card">
