@@ -1,36 +1,37 @@
 import React from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import './Style.css';
 
 function Admin(props) {
 
-    let { data } = props;
-
     const navigate = useNavigate();
-
+    const location = useLocation();
+    let { name, email, contact_no,address } = location.state;
+    
     const handleProfile = () => {
-        navigate(`/edit_profile`);
+        navigate(`/edit_profile`,{state:location.state});
     }
 
     const footer = (
         <span>
             <Button className='profile-button' label="Edit Profile" onClick={handleProfile} />
-            <Button className='profile-button' label="Remove User" />
-            <Button className='profile-button' label="Remove Property" />
+            <Button className='profile-button' label="View Users" />
+            <Button className='profile-button' label="View Properties" />
 
         </span>
     );
 
-    let { name, email, contact } = data;
-
+   
+    console.log(location)
     return (
         <Card title="Admin" subTitle="profile details" footer={footer}>
             <div className='profile-details'>
                 <div> Name :  {name}</div>
                 <div> Email id : {email}</div>
-                <div> Contact : {contact} </div>
+                <div> Contact : {contact_no} </div>
+                <div> Address : {address}</div>
             </div>
         </Card>
     )

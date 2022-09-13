@@ -1,43 +1,43 @@
 import React from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import './Style.css';
 
-function Customer(props) {
-
-    let { data } = props;
+function Owner(props) {
 
     const navigate = useNavigate();
-
+    const location = useLocation();
+    let { name, email, contact_no,address } = location.state;
+    
     const handleProfile = () => {
-        navigate(`/edit_profile`);
+        navigate(`/edit_profile`,{state:location.state});
     }
 
     const footer = (
         <span>
             <Button className='profile-button' label="Edit Profile" onClick={handleProfile} />
-           
+            <Button className='profile-button' label="Add Property" />
             <Button className='profile-button' label="Edit Property" />
 
-            <Button className='profile-button' label="Add Property" />
         </span>
     );
 
-    let { name, email, contact } = data;
-
+   
+    console.log(location)
     return (
         <Card title="Owner" subTitle="profile details" footer={footer}>
             <div className='profile-details'>
                 <div> Name :  {name}</div>
                 <div> Email id : {email}</div>
-                <div> Contact : {contact} </div>
+                <div> Contact : {contact_no} </div>
+                <div> Address : {address}</div>
             </div>
         </Card>
     )
 };
 
-Customer.defaultProps = {
+Owner.defaultProps = {
     data: {
         name: 'abc',
         email: 'abc@xyz.com',
@@ -45,4 +45,4 @@ Customer.defaultProps = {
     }
 }
 
-export default Customer;
+export default Owner;

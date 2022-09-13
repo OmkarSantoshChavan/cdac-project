@@ -7,15 +7,15 @@ import {Button} from 'primereact/button';
 import { useNavigate } from "react-router-dom";
 
 function Registeruser() {
-    const [user, setUser] = useState({
+    const userdetail={
         name: '',
         email: '',
         password: '',
         contact_no: '',
         address: '',
-        aadhar_card: '',
-        role: ''
-    });
+        aadhar_card: ''
+    }
+    const [user, setUser] = useState(userdetail);
 
     const navigate = useNavigate();
 
@@ -29,12 +29,12 @@ function Registeruser() {
     const onInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
-    const { name, email, password, contact_no, address, aadhar_card, role } = user;
+    const { name, email, password, contact_no, address, aadhar_card } = user;
 
     const FormHandle = e => {
         e.preventDefault();
-        console.log(JSON.stringify(user))
-        addDataToServer(user)
+
+        addDataToServer({...user,role:roleName})
     }
 
     const addDataToServer = (data) => {
@@ -53,12 +53,12 @@ function Registeruser() {
     const header = (<h1 class="display-4 text-center">Register User!</h1>);
 
     const footer = (<div className="container text-center">
-        <Button type="submit" className='register-button'>Register</Button>
+        <Button type="submit" className='register-button' onClick={FormHandle}>Register</Button>
 
-        <Button type="button" className="clear-button" onClick={() => { navigate("/Registeruser"); }}> Clear</Button>
+        <Button type="button" className="clear-button" onClick={() => { setUser(userdetail); setRoleName(""); }}> Clear</Button>
 
     </div>)
-
+    console.log(roleName, "role")
     return (
 
         <div className='register-bg'>
@@ -66,7 +66,7 @@ function Registeruser() {
             <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                 <div class="jumbotron">
                     <div>
-                        <form onSubmit={e => FormHandle(e)}  style={{textAlign: 'justify'}}>
+                        <form  style={{textAlign: 'justify'}}>
 
                             <div class="form-group" style={{ margin: '10px' }}>
                                 <label for="name" style={{ margin: '29px' }}> Name</label>
@@ -104,9 +104,9 @@ function Registeruser() {
                                     <RadioButton
                                         inputId="role1"
                                         name="owner"
-                                        value="Owner"
+                                        value="owner"
                                         onChange={(e) => { handleRadioChange(e) }}
-                                        checked={roleName === 'Owner'}
+                                        checked={roleName === 'owner'}
                                     />
                                     <label htmlFor="role1">Owner</label>
                                 </div>
@@ -116,7 +116,7 @@ function Registeruser() {
                                         name="customer"
                                         value="customer"
                                         onChange={(e) => { handleRadioChange(e) }}
-                                        checked={roleName === 'Customer'}
+                                        checked={roleName === 'customer'}
                                     />
                                     <label htmlFor="role2">Customer</label>
                                 </div>

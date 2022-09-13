@@ -31,17 +31,17 @@ function LoginPage() {
                 if(response.data.role === "admin")
                 {
                     localStorage.setItem("loggedinuser",JSON.stringify(response.data));
-                    navigate('/admin');
+                    navigate('/admin',{state:response.data});
                 }
                 else if(response.data.role === "owner")
                 {
                     localStorage.setItem("loggedinuser",JSON.stringify(response.data));
-                    navigate('/owner');
+                    navigate('/owner',{state:response.data});
                 }
                 else if(response.data.role === "customer")
                 {
                     localStorage.setItem("loggedinuser",JSON.stringify(response.data));
-                    navigate('/customer');
+                    navigate('/customer',{state:response.data});
                 }
 
                 //alert(" login Successfully");
