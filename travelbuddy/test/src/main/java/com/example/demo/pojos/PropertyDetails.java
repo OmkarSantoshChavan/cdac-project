@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table(name="property_details")
 public class PropertyDetails {
@@ -81,9 +82,5 @@ public class PropertyDetails {
 		return "PropertyDetails [pid=" + pid + ", address=" + address + ", rent=" + rent + ", description="
 				+ description + ", ownerData=" + ownerData + ", areaData=" + areaData + "]";
 	}
-	
-	
-	
-	
-	
+
 }

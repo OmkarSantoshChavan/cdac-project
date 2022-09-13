@@ -19,8 +19,7 @@ function LoginPage() {
         setCustomer({ ...customer, [e.target.name]: e.target.value })
     }
     const { email, password } = customer;
-    
-        
+
 
     const FormHandle = e => {
         e.preventDefault();
@@ -30,8 +29,24 @@ function LoginPage() {
     const addDataToServer = (data) => {
         axios.post("http://localhost:8080/login", data).then(
             (response) => {
-                console.log(response);
-                alert(" login Successfull");
+                console.log(response.data);
+                if(response.data.role === "admin")
+                {
+                    localStorage.setItem("loggedinuser",JSON.stringify(response.data));
+                    navigate('/admin');
+                }
+                else if(response.data.role === "owner")
+                {
+                    localStorage.setItem("loggedinuser",JSON.stringify(response.data));
+                    navigate('/owner');
+                }
+                else if(response.data.role === "customer")
+                {
+                    localStorage.setItem("loggedinuser",JSON.stringify(response.data));
+                    navigate('/customer');
+                }
+
+                //alert(" login Successfully");
             }, (error) => {
                 console.log(error);
                 alert("Invalid credentials !!!");
@@ -45,7 +60,7 @@ function LoginPage() {
 
 
     const footer = (<div className="container text-center">
-        <Button type="submit" className='login-button'onClick={FormHandle}>Login</Button>
+        <Button type="submit" className='login-button' onClick={FormHandle}>Login</Button>
 
         <Button type="button" className="register-button" onClick={() => { navigate("/Registeruser"); }}> Register</Button>
 

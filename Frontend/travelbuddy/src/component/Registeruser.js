@@ -61,6 +61,7 @@ function Registeruser() {
 
     return (
 
+        <div className='register-bg'>
         <Card className="container" header={header}  footer={footer}>
             <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                 <div class="jumbotron">
@@ -126,6 +127,7 @@ function Registeruser() {
                 </div>
             </div>
         </Card>
+        </div>
     )
 }
 export default Registeruser;

@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
 import './Style.css';
 
-function Customer(props) {
+function Admin(props) {
 
     let { data } = props;
 
@@ -17,17 +17,16 @@ function Customer(props) {
     const footer = (
         <span>
             <Button className='profile-button' label="Edit Profile" onClick={handleProfile} />
-           
-            <Button className='profile-button' label="Edit Property" />
+            <Button className='profile-button' label="Remove User" />
+            <Button className='profile-button' label="Remove Property" />
 
-            <Button className='profile-button' label="Add Property" />
         </span>
     );
 
     let { name, email, contact } = data;
 
     return (
-        <Card title="Owner" subTitle="profile details" footer={footer}>
+        <Card title="Admin" subTitle="profile details" footer={footer}>
             <div className='profile-details'>
                 <div> Name :  {name}</div>
                 <div> Email id : {email}</div>
@@ -37,7 +36,7 @@ function Customer(props) {
     )
 };
 
-Customer.defaultProps = {
+Admin.defaultProps = {
     data: {
         name: 'abc',
         email: 'abc@xyz.com',
@@ -45,4 +44,4 @@ Customer.defaultProps = {
     }
 }
 
-export default Customer;
+export default Admin;
