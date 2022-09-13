@@ -4,6 +4,7 @@ import { Card } from 'primereact/card';
 import { useNavigate } from "react-router-dom";
 import { Button } from 'primereact/button';
 
+
 function LoginPage() {
     const [customer, setCustomer] = useState({
 
@@ -20,7 +21,6 @@ function LoginPage() {
     const { email, password } = customer;
 
 
-
     const FormHandle = e => {
         e.preventDefault();
         addDataToServer(customer)
@@ -29,8 +29,24 @@ function LoginPage() {
     const addDataToServer = (data) => {
         axios.post("http://localhost:8080/login", data).then(
             (response) => {
-                console.log(response);
-                alert(" login Successfully");
+                console.log(response.data);
+                if(response.data.role === "admin")
+                {
+                    localStorage.setItem("loggedinuser",JSON.stringify(response.data));
+                    navigate('/admin');
+                }
+                else if(response.data.role === "owner")
+                {
+                    localStorage.setItem("loggedinuser",JSON.stringify(response.data));
+                    navigate('/owner');
+                }
+                else if(response.data.role === "customer")
+                {
+                    localStorage.setItem("loggedinuser",JSON.stringify(response.data));
+                    navigate('/customer');
+                }
+
+                //alert(" login Successfully");
             }, (error) => {
                 console.log(error);
                 alert("Invalid credentials !!!");
@@ -53,7 +69,9 @@ function LoginPage() {
 
 
     const header = (<h1 class="display-4 text-center">Login Page</h1>);
-
+    
+        
+    
     return (
         <Card header={header} footer={footer}>
             <div className="container">

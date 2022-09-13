@@ -21,7 +21,15 @@ function App() {
             <Route path="/registeruser" element={<Registeruser />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/owner" element={<Owner />} />
+<<<<<<< HEAD
 
+=======
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/edit_profile" element={<Edit_profile />} />
+
+
+
+>>>>>>> 28d015c7aba30284c34cd9db0c88746f367d1abb
           </Routes>
 
 
