@@ -21,10 +21,7 @@ function App() {
             <Route path="/registeruser" element={<Registeruser />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/owner" element={<Owner />} />
-
           </Routes>
-
-
         </BrowserRouter>
 
       </header>

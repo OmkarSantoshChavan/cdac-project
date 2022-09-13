@@ -1,13 +1,17 @@
 package com.example.demo.pojos;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="property_details")
 public class PropertyDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,7 +95,5 @@ public class PropertyDetails {
 		return "PropertyDetails [pid=" + pid + ", address=" + address + ", rent=" + rent + ", description="
 				+ description + "]";
 	}
-	
-	
-	
+
 }

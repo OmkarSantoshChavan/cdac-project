@@ -30,10 +30,10 @@ function LoginPage() {
         axios.post("http://localhost:8080/login", data).then(
             (response) => {
                 console.log(response);
-                alert(" login Successfull");
+                alert(" login Successfully");
             }, (error) => {
                 console.log(error);
-                alert("Invali credentials !!!");
+                alert("Invalid credentials !!!");
             }
         );
     }
@@ -44,7 +44,7 @@ function LoginPage() {
 
 
     const footer = (<div className="container text-center">
-        <Button type="submit" className='login-button'>Login</Button>
+        <Button type="submit" className='login-button' onClick={FormHandle}>Login</Button>
 
         <Button type="button" className="register-button" onClick={() => { navigate("/Registeruser"); }}> Register</Button>
 
