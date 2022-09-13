@@ -23,14 +23,11 @@ function App() {
             <Route path="/registeruser" element={<Registeruser />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/owner" element={<Owner />} />
-<<<<<<< HEAD
-=======
             <Route path="/Admin" element={<Admin />} />
             <Route path="/Edit_profile" element={<Edit_profile />} />
 
 
 
->>>>>>> 569c56333631b70abe08a8170560a33f0db785cc
           </Routes>
         </BrowserRouter>
 
