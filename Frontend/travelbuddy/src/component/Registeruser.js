@@ -60,7 +60,8 @@ function Registeruser() {
     </div>)
 
     return (
-    <div class="register_background">
+
+        <div className='register-bg'>
         <Card className="container" header={header}  footer={footer}>
             <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                 <div class="jumbotron">

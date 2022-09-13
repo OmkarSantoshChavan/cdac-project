@@ -65,9 +65,10 @@ function Homepage(props) {
         <div>
             <div className="card">
                 <Carousel value={list} numVisible={3} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
-                    autoplayInterval={3000} itemTemplate={productTemplate} header={<h5>Circular, AutoPlay, 3 Items per Page and Scroll by 1</h5>} />
+                    autoplayInterval={3000} itemTemplate={productTemplate} header={<h5>Circular, AutoPlay, 3 Items per Page and Scroll by 1</h5>}/>
             </div>
-            {/* <Link to="/login"><Button label="Login" /></Link> */}
+            
+            
             <Button label="Login" onClick={handleLogin} />
             <Button label="Register" onClick={handleRegister} />
         </div>
