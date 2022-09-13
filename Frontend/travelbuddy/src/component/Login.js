@@ -4,6 +4,7 @@ import { Card } from 'primereact/card';
 import { useNavigate } from "react-router-dom";
 import { Button } from 'primereact/button';
 
+
 function LoginPage() {
     const [customer, setCustomer] = useState({
 
@@ -18,8 +19,8 @@ function LoginPage() {
         setCustomer({ ...customer, [e.target.name]: e.target.value })
     }
     const { email, password } = customer;
-
-
+    
+        
 
     const FormHandle = e => {
         e.preventDefault();
@@ -33,7 +34,7 @@ function LoginPage() {
                 alert(" login Successfull");
             }, (error) => {
                 console.log(error);
-                alert("Invali credentials !!!");
+                alert("Invalid credentials !!!");
             }
         );
     }
@@ -44,7 +45,7 @@ function LoginPage() {
 
 
     const footer = (<div className="container text-center">
-        <Button type="submit" className='login-button'>Login</Button>
+        <Button type="submit" className='login-button'onClick={FormHandle}>Login</Button>
 
         <Button type="button" className="register-button" onClick={() => { navigate("/Registeruser"); }}> Register</Button>
 
@@ -53,7 +54,9 @@ function LoginPage() {
 
 
     const header = (<h1 class="display-4 text-center">Login Page</h1>);
-
+    
+        
+    
     return (
         <Card header={header} footer={footer}>
             <div className="container">
