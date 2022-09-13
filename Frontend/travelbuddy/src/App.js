@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from "rea
 import Homepage from './component/Homepage';
 import Customer from './component/Role/Customer';
 import Owner from './component/Role/Owner';
+import Admin from './component/Role/Admin';
+import Edit_profile from './component/Role/Edit_profile';
 
 function App() {
   return (
@@ -21,6 +23,14 @@ function App() {
             <Route path="/registeruser" element={<Registeruser />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/owner" element={<Owner />} />
+<<<<<<< HEAD
+=======
+            <Route path="/Admin" element={<Admin />} />
+            <Route path="/Edit_profile" element={<Edit_profile />} />
+
+
+
+>>>>>>> 569c56333631b70abe08a8170560a33f0db785cc
           </Routes>
         </BrowserRouter>
 
