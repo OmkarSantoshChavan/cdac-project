@@ -23,8 +23,13 @@ function App() {
             <Route path="/registeruser" element={<Registeruser />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/owner" element={<Owner />} />
+<<<<<<< HEAD
             <Route path="/Admin" element={<Admin />} />
             <Route path="/Edit_profile" element={<Edit_profile />} />
+=======
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/edit_profile" element={<Edit_profile />} />
+>>>>>>> 9f0663b3cec9ab2f1d2c58158aa97f99f77d6bdb
 
 
 
