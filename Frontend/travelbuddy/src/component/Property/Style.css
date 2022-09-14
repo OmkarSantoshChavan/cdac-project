@@ -1,0 +1,19 @@
+.profile-details {
+    display: grid;
+    text-align: justify;
+    margin-left: 33px;
+    gap: 10px;
+}
+
+.profile-button{
+    width: 123px;
+    height: 40px;
+    font-size: 12px;
+    margin: 6px;
+}
+.edit_profile-button{
+    width: 123px;
+    height: 40px;
+    font-size: 12px;
+    margin: 6px;
+}

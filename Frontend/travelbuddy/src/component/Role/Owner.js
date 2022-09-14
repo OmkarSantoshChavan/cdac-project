@@ -13,11 +13,14 @@ function Owner(props) {
     const handleProfile = () => {
         navigate(`/edit_profile`,{state:location.state});
     }
+    const addProperty = () => {
+        navigate(`/add_property`,{state:location.state});
+    }
 
     const footer = (
         <span>
             <Button className='profile-button' label="Edit Profile" onClick={handleProfile} />
-            <Button className='profile-button' label="Add Property" />
+            <Button className='profile-button' label="Add Property" onClick={addProperty}/>
             <Button className='profile-button' label="Edit Property" />
 
         </span>

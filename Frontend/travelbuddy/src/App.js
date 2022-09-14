@@ -10,6 +10,7 @@ import Customer from './component/Role/Customer';
 import Owner from './component/Role/Owner';
 import Admin from './component/Role/Admin';
 import Edit_profile from './component/Role/Edit_profile';
+import Add_property from './component/Property/Add_property';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/owner" element={<Owner />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/edit_profile" element={<Edit_profile />} />
+            <Route path="/add_property" element={<Add_property />} />
           </Routes>
         </BrowserRouter>
 
