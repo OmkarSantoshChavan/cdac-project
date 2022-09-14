@@ -24,9 +24,6 @@ function App() {
             <Route path="/owner" element={<Owner />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/edit_profile" element={<Edit_profile />} />
-
-
-
           </Routes>
         </BrowserRouter>
 

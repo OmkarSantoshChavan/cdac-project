@@ -33,7 +33,7 @@ function Edit_profile(props) {
     }
 
     const addDataToServer = (data) => {
-        axios.post("http://localhost:8080/registeruser", data).then(
+        axios.post("http://localhost:8080/registeruser/updateprofile/{}", data).then(
             (response) => {
                 console.log(response);
                 alert("User Updated Successfully");
