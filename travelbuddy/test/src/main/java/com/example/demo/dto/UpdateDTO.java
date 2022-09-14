@@ -4,7 +4,7 @@ public class UpdateDTO {
 	private String name;
 	private String password;
 	private String email;
-	private String contactNo;
+	private String contact_no;
 	private String address;
 	public String getName() {
 		return name;
@@ -24,11 +24,11 @@ public class UpdateDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getContactNo() {
-		return contactNo;
+	public String getContact_no() {
+		return contact_no;
 	}
-	public void setContactNo(String contactNo) {
-		this.contactNo = contactNo;
+	public void setContact_no(String contact_no) {
+		this.contact_no = contact_no;
 	}
 	public String getAddress() {
 		return address;
@@ -36,6 +36,5 @@ public class UpdateDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 	
 }

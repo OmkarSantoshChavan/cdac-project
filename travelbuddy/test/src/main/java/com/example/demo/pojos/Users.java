@@ -34,6 +34,12 @@ public class Users {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Users(int userid) {
+		super();
+		this.userid = userid;
+	}
+
 	public Users(int userid, String name, String email, String password, String contact_no, String address,
 			String aadhar_card, Role role) {
 		super();

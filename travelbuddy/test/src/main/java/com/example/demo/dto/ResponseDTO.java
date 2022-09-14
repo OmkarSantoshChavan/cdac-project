@@ -38,5 +38,4 @@ public class ResponseDTO<T> {
 		return "ResponseDTO [status=" + status + ", message=" + message + ", result=" + result + "]";
 	}
 	
-
 }
