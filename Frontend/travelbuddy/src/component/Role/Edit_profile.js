@@ -10,14 +10,17 @@ function Edit_profile(props) {
 
     const location=useLocation();
     console.log(location.state)
-    let { name, email,password, contact_no,address } = location?.state || {};
+    let { userid,name, email,password, contact_no,address,aadhar_card,role } = location?.state || {};
     
         const [user, setUser] = useState({
+            userid:userid,
             name: name,
             email: email,
             password: password,
             contact_no: contact_no,
-            address:address
+            address:address,
+            aadhar_card:aadhar_card,
+            role:role
         });
 
 
@@ -33,7 +36,7 @@ function Edit_profile(props) {
     }
 
     const addDataToServer = (data) => {
-        axios.post("http://localhost:8080/registeruser/updateprofile/{}", data).then(
+        axios.post("http://localhost:8080/updateprofile", data).then(
             (response) => {
                 console.log(response);
                 alert("User Updated Successfully");
@@ -46,7 +49,7 @@ function Edit_profile(props) {
 
     const footer = (
         <span>
-            <Button type="submit" className='edit_profile-button' label="Update" />
+            <Button type="submit" className='edit_profile-button' label="Update" onClick={FormHandle}/>
             <Button type="reset" className='edit_profile-button' label="Clear" />
         </span>
     );
@@ -60,6 +63,7 @@ function Edit_profile(props) {
                 Email id : <input type="Email"  className="edit_profile_input" value={email} onChange={(e) => onInputChange(e)}></input>
                 Contact : <input type="tel" value={contact_no} onChange={(e) => onInputChange(e)}></input>
                 Address : <input type="text" value={address} onChange={(e) => onInputChange(e)}></input>
+                
             </div>
         </Card>
     )
