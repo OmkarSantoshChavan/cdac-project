@@ -39,7 +39,12 @@ public class UserService {
 	         userDetails.setPassword(user.getPassword());
 	         userDetails.setEmail(user.getEmail());
 	         userDetails.setContact_no(user.getContact_no());
+<<<<<<< HEAD
 	         userDetails.setAddress(user.getAddress());	         
+=======
+	         userDetails.setAddress(user.getAddress());
+	         
+>>>>>>> 292fe8b5a59680e57ec891a079ef9c4066fab19a
 	         urepo.save(userDetails);
 	         return userDetails;
 }
