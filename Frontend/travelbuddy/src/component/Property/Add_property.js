@@ -23,7 +23,7 @@ function Add_property() {
     const { address, pincode, rent, description } = propertydetail;
 
     const addDataToServer = (data) => {
- /*changes*/      axios.post("http://localhost:8080/registeruser", data).then(
+ /*changes*/      axios.post("http://localhost:8080/add_property", data).then(
             (response) => {
                 console.log(response);
                 alert("Property Added Successfully");

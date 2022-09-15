@@ -35,7 +35,13 @@ public class UserService {
 	     if(!exists)
 	    	 throw new ResourceNotFoundException("Invalid user id!!!!!");
 	         Users userDetails=urepo.findById(userid).get();
-	         BeanUtils.copyProperties(user, userDetails);
+	         userDetails.setName(user.getName());
+	         userDetails.setPassword(user.getPassword());
+	         userDetails.setEmail(user.getEmail());
+	         userDetails.setContact_no(user.getContact_no());
+	         userDetails.setAddress(user.getAddress());
+	         
+	         urepo.save(userDetails);
 	         return userDetails;
 }
 }
