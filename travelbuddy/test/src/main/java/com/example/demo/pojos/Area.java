@@ -26,6 +26,9 @@ public class Area {
     private String area_name;
 	@Column
     private String city;
+	@OneToMany(mappedBy = "areaData",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("areaData")
+	private List<PropertyDetails>areaPropData;
 	
 	public Area() {
 		super();
@@ -70,6 +73,14 @@ public class Area {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	public List<PropertyDetails> getAreaPropData() {
+		return areaPropData;
+	}
+
+	public void setAreaPropData(List<PropertyDetails> areaPropData) {
+		this.areaPropData = areaPropData;
 	}
 
 	@Override

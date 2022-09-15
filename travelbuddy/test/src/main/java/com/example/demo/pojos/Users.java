@@ -1,5 +1,8 @@
 package com.example.demo.pojos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,7 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "users")
@@ -30,6 +36,9 @@ public class Users {
     private String aadhar_card;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToMany(mappedBy = "ownerData",orphanRemoval = true)
+    @JsonIgnoreProperties("ownerData")
+     private List<PropertyDetails>prolist=new ArrayList<PropertyDetails>();
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -95,16 +104,23 @@ public class Users {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", contact_no=" + contact_no + ", address=" + address + ", aadhar_card=" + aadhar_card + ", role=" + role
-				+ "]";
-	}
 	public String getAadhar_card() {
 		return aadhar_card;
 	}
 	public void setAadhar_card(String aadhar_card) {
 		this.aadhar_card = aadhar_card;
 	} 
+	public List<PropertyDetails> getProlist() {
+		return prolist;
+	}
+	public void setProlist(List<PropertyDetails> prolist) {
+		this.prolist = prolist;
+	}
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", contact_no=" + contact_no + ", address=" + address + ", aadhar_card=" + aadhar_card + ", role=" + role
+				+ "]";
+	}
+	
 }

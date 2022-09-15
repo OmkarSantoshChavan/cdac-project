@@ -1,5 +1,9 @@
 package com.example.demo.pojos;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="property_details")
@@ -24,11 +31,18 @@ public class PropertyDetails {
 	private String description;	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="userid")
+	@JsonIgnoreProperties("prolist")
 	private Users ownerData;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="area_id")
+	@JsonIgnoreProperties("areaPropData")
 	private Area areaData;
-	
+	@OneToMany(mappedBy = "photoData",cascade = CascadeType.ALL,orphanRemoval = true)
+	@JsonIgnoreProperties("photoData")
+	private List<PropPhotos>propertyphoto=new ArrayList<>();
+	@OneToMany(mappedBy="facilityData",cascade = CascadeType.ALL,orphanRemoval = true)
+	@JsonIgnoreProperties("facilityData")
+	List<Facilities>facilityList=new ArrayList<>();
 	public PropertyDetails() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -88,6 +102,14 @@ public class PropertyDetails {
 
 	public void setAreaData(Area areaData) {
 		this.areaData = areaData;
+	}
+	
+	public List<PropPhotos> getPropertyphoto() {
+		return propertyphoto;
+	}
+
+	public void setPropertyphoto(List<PropPhotos> propertyphoto) {
+		this.propertyphoto = propertyphoto;
 	}
 
 	@Override
