@@ -48,9 +48,8 @@ public class PropertyDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PropertyDetails(int pid, String address, double rent, String description) {
+	public PropertyDetails(String address, double rent, String description) {
 		super();
-		this.pid = pid;
 		this.address = address;
 		this.rent = rent;
 		this.description = description;

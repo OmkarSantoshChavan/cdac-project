@@ -1,11 +1,11 @@
 package com.example.demo.controllers;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,14 +26,24 @@ public class UserController {
 	UserService us;
 	
 	@PostMapping("/login")
-	public Object Login(@RequestBody LoginRequest request)
+	public Users Login(@RequestBody LoginRequest request)
 	{
 		return us.loginRequest(request.getEmail(),request.getPassword());
 	}
 	
 	@PostMapping("/registeruser")
-	public Users RegisterUser(@RequestBody Users u) {
-		return us.RegisterUser(u);	
+	public ResponseDTO<?> registerUser(@RequestBody Users u) {
+		return new ResponseDTO<>(HttpStatus.OK,"registeration done successfully",us.registerUser(u));
+	}
+	
+	@DeleteMapping("/deleteuserbyid/{userid}")
+	public ResponseDTO<?> deleteUserById(@PathVariable int userid) {
+		 try {
+			 return new ResponseDTO<>(HttpStatus.OK,"User removed succssfully",us.deleteUserById(userid));
+		} catch (ResourceNotFoundException e) {
+			return new ResponseDTO<>(HttpStatus.BAD_REQUEST,"This user is not present",null);
+		}
+
 	}
 	
 	@PutMapping("/updateprofile/{userid}")
@@ -45,4 +55,5 @@ public class UserController {
 			return new ResponseDTO<>(HttpStatus.BAD_GATEWAY,"Use valid userid",null);
 		} 
     }
+	
 }

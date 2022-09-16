@@ -19,28 +19,37 @@ public class UserService {
 	@Autowired
 	UserRepository urepo;
 	
-	 public Optional<Users> loginRequest(String email, String password) {
+	 public Users loginRequest(String email, String password) {
 		 
- 		return Optional.ofNullable(urepo.Login(email, password)
- 				.orElseThrow(() -> new CustomerHandlingException("Invalid Credentials!!!!")));						
+ 		return urepo.Login(email, password)
+ 				.orElseThrow(() -> new CustomerHandlingException("Invalid Credentials!!!!"));						
 	 }
 	
-	public Users RegisterUser(Users u) {	
-		
+	public Users registerUser(Users u) {	
+		System.out.println("user info"+u);
 		return urepo.save(u);	
 	}
 	
-	public  Users updateProfile(int userid, UpdateDTO user) throws ResourceNotFoundException {
+	public String deleteUserById(int userid) throws ResourceNotFoundException {
+		boolean exists=urepo.existsById(userid);
+		if(!exists)
+			 throw new ResourceNotFoundException("wrong userid");
+		Users u=urepo.findById(userid).get();
+		urepo.delete(u);
+		return "User is deleted with id:"+userid;	
+	}
+	
+	public Users updateProfile(int userid, UpdateDTO user) throws ResourceNotFoundException {
 	    boolean exists=urepo.existsById(userid);
 	     if(!exists)
 	    	 throw new ResourceNotFoundException("Invalid user id!!!!!");
-	         Users userDetails=urepo.findById(userid).get();
-	         userDetails.setName(user.getName());
-	         userDetails.setPassword(user.getPassword());
-	         userDetails.setEmail(user.getEmail());
-	         userDetails.setContact_no(user.getContact_no());
-	         userDetails.setAddress(user.getAddress());
-	         urepo.save(userDetails);
-	         return userDetails;
+         Users userDetails=urepo.findById(userid).get();
+         userDetails.setName(user.getName());
+         userDetails.setPassword(user.getPassword());
+         userDetails.setEmail(user.getEmail());
+         userDetails.setContact_no(user.getContact_no());
+         userDetails.setAddress(user.getAddress());
+         urepo.save(userDetails);
+         return userDetails;
 }
 }

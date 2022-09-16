@@ -35,9 +35,8 @@ public class Area {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Area(int area_id, int pincode, String area_name, String city) {
+	public Area(int pincode, String area_name, String city) {
 		super();
-		this.area_id = area_id;
 		this.pincode = pincode;
 		this.area_name = area_name;
 		this.city = city;

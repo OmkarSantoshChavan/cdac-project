@@ -28,13 +28,5 @@ public class AdminController {
 	{
 		return new ResponseDTO<>(HttpStatus.OK, "Fetching user list successfully", adminService.fetchAllUsers());
 	}
-	@DeleteMapping("/delete/{propId}")
-	 public ResponseDTO<?> deleteById(@PathVariable int propId)
-	 {
-		  try {
-			 return new ResponseDTO<>(HttpStatus.OK,"Property removed succssfully",adminService.deletePropertyById(propId));
-		} catch (ResourceNotFoundException e) {
-			return new ResponseDTO<>(HttpStatus.BAD_REQUEST,"This property is not present",null);
-		}
-	 }
+
 }
