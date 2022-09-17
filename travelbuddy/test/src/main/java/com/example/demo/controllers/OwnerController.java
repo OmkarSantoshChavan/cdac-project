@@ -20,7 +20,7 @@ public class OwnerController {
 	@Autowired
 	OwnerService os;
 	
-	 @PostMapping("/property/{userid}")
+	 @PostMapping("/addproperty/{userid}")
      public ResponseDTO<?>addProperty(@PathVariable int userid,@RequestBody AddPropertyDTO request)
      {
   	   return new ResponseDTO<>(HttpStatus.OK, "Property added successfully", os.addProperty(userid,request));

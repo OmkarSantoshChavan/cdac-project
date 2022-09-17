@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,20 +26,22 @@ public class OwnerService {
 	@Autowired
 	UserRepository urepo;
 	
-	public String addProperty(int userid,AddPropertyDTO prop) {
+	public PropertyDetails addProperty(int userid,AddPropertyDTO prop) {
 		Users u=urepo.findById(userid).get();
 		Area a=new Area(prop.getPincode(),prop.getArea_name(),prop.getCity());
 		Area a1;
 		int pincode=a.getPincode();
-		int pin=arepo.existsAreaByPin(pincode);
-	      if(pincode != pin)
+		Optional<Area> a2=arepo.existsAreaByPin(pincode);
+		System.out.println(a2);
+	      if(a2!=null)
 	      {
-	    	  a1=arepo.save(a);		    	    
+	    	  a1=arepo.getAreaByPin(pincode);
+	    	  		    	    
 	      }
 	      else {
-	    	  a1=arepo.getAreaByPin(pincode);
+	    	  a1=arepo.save(a);
 	      }
-		
+		System.out.println(a1);
 		//Area a1=arepo.save(a);
 		Facilities f=new Facilities(prop.getFurnished(), prop.getParking(), prop.getSecurity_guard(), prop.getLift(), prop.getCctv());
 		Facilities f1=frepo.save(f);
@@ -46,6 +50,6 @@ public class OwnerService {
 		pd.setOwnerData(u);
 		f1.setFacilityData(pd);
 		PropertyDetails pd1= prepo.save(pd);
-		return "Property added successfully";
+		return pd1;
 	}
 }

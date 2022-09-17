@@ -26,7 +26,7 @@ public class PropertyDetails {
 	@Column
 	private String address;
 	@Column
-	private double rent;
+	private int rent;
 	@Column
 	private String description;	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -48,7 +48,7 @@ public class PropertyDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PropertyDetails(String address, double rent, String description) {
+	public PropertyDetails(String address, int rent, String description) {
 		super();
 		this.address = address;
 		this.rent = rent;
@@ -71,11 +71,11 @@ public class PropertyDetails {
 		this.address = address;
 	}
 
-	public double getRent() {
+	public int getRent() {
 		return rent;
 	}
 
-	public void setRent(double rent) {
+	public void setRent(int rent) {
 		this.rent = rent;
 	}
 

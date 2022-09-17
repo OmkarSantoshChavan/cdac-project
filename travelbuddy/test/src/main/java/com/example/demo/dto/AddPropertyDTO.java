@@ -3,7 +3,7 @@ package com.example.demo.dto;
 public class AddPropertyDTO {
 	
 	private String address;
-	private double rent;
+	private int rent;
 	private String desc;
 	private int pincode;
 	private String area_name;
@@ -19,10 +19,10 @@ public class AddPropertyDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public double getRent() {
+	public int getRent() {
 		return rent;
 	}
-	public void setRent(double rent) {
+	public void setRent(int rent) {
 		this.rent = rent;
 	}
 	public String getDesc() {

@@ -8,7 +8,7 @@ function Owner(props) {
 
     const navigate = useNavigate();
     const location = useLocation();
-    let { name, email, contact_no,address } = location.state;
+    let { name, email, contact_no,address } = location.state ||{};
     
     const handleProfile = () => {
         navigate(`/edit_profile`,{state:location.state});
