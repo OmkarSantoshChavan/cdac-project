@@ -2,7 +2,7 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
-
+import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { InputText } from "primereact/inputtext";
@@ -77,11 +77,19 @@ export const Register = (props) => {
     onSubmit: (data) => {
         
       setFormData(data);
+      axios.post("http://localhost:8080/registeruser", data).then(
+            (response) => {
+                console.log(response);
+            }, (error) => {
+                console.log(error);
+            }
+        );
       setShowMessage(true);
 
       formik.resetForm();
     },
   });
+
 
   const isFormFieldValid = (name) =>
     !!(formik.touched[name] && formik.errors[name]);
