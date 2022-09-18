@@ -30,3 +30,50 @@
     width: 50%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+
+
+.homepage-header{
+    display: flex;
+    background: lightgray;
+    opacity:2;
+}
+
+.login-button{
+    width: 105px;
+    height: 38px;
+}
+
+.register-button{
+    width: 105px;
+    height: 38px;
+}
+
+.access-grid {
+    margin: 18px;
+    left: 102%;
+    margin-left: 58%;
+}
+
+.inner-grid-container{
+  margin-top: 5%;
+}
+
+.form-demo{
+    width: 50%;
+    margin: 0% 25%;
+    overflow: auto;
+    height: 516px;
+}
+
+.form-demo .card {
+
+}
+
+.form-demo .card form {
+    margin-top: 2rem;
+}
+.form-demo .card .p-field {
+    margin-bottom: 1.5rem;
+}
+
+            

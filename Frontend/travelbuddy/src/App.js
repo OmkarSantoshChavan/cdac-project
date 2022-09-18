@@ -2,7 +2,6 @@ import './App.css';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
-import LoginPage from './component/Login';
 import Registeruser from './component/Registeruser';
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import Homepage from './component/Homepage';
@@ -13,15 +12,24 @@ import Edit_profile from './component/Role/Edit_profile';
 import Add_property from './component/Property/Add_property';
 import LoginForm from './component/LoginForm';
 import Register from './component/Register';
+import Image from './assets/Photos/Hotel.jpg';
 
 function App() {
+  
+  const appStyles = {
+    backgroundImage: `url(${Image})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100vw',
+    height: '100vh'
+  };
+  
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App"  style={appStyles}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/login" element={<LoginPage />} />
             <Route path="/loginform" element={<LoginForm />} />
             <Route path="/register" element={<Register />} />
             <Route path="/registeruser" element={<Registeruser />} />
@@ -32,8 +40,6 @@ function App() {
             <Route path="/add_property" element={<Add_property />} />
           </Routes>
         </BrowserRouter>
-
-      </header>
     </div>
   );
 }
