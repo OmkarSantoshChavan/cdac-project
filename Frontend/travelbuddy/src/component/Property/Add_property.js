@@ -23,7 +23,7 @@ const Add_property = () => {
     let { userid } = location.state ||{};
     useEffect(() => {
        
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []); 
 
     const formik = useFormik({
         initialValues: {
@@ -47,7 +47,7 @@ const Add_property = () => {
             }
 
             if (!/[+-]?([0-9]*[.])?[0-9]+/i.test(data.rent)) {
-                errors.rent = 'Enter Valid Rent.';
+                errors.rent = 'Enter Valid Rent amount.';
             }
 
             if (!data.desc) {
@@ -83,7 +83,6 @@ const Add_property = () => {
                 parking : parking ? 'yes' : 'no',
                 security_guard : security_guard ? 'yes' : 'no'
             };
-            debugger
             axios.post(`http://localhost:8080/addproperty/${userid}`, param).then(
             (response) => {
                 console.log(response.data);
@@ -116,7 +115,6 @@ const Add_property = () => {
                     </p>
                 </div>
             </Dialog>
-
             <div className="flex justify-content-center">
                 <div className="card">
                     <h5 className="text-center">Add Property</h5>
@@ -130,7 +128,6 @@ const Add_property = () => {
                         </div>
                         <div className="field">
                             <span className="p-float-label p-input-icon-right">
-                               
                                 <InputText id="rent" name="rent" value={formik.values.rent} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('rent') })} />
                                 <label htmlFor="rent" className={classNames({ 'p-error': isFormFieldValid('rent') })}>Rent*</label>
                             </span>
@@ -138,7 +135,6 @@ const Add_property = () => {
                         </div>
                         <div className="field">
                         <span className="p-float-label p-input-icon-right">
-                                
                                 <InputText id="desc" name="desc" value={formik.values.desc} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('desc') })} />
                                 <label htmlFor="desc" className={classNames({ 'p-error': isFormFieldValid('desc') })}>Description*</label>
                             </span>
@@ -146,7 +142,6 @@ const Add_property = () => {
                         </div>
                         <div className="field">
                         <span className="p-float-label p-input-icon-right">
-                                
                                 <InputText id="pincode" name="pincode" value={formik.values.pincode} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('pincode') })} />
                                 <label htmlFor="pincode" className={classNames({ 'p-error': isFormFieldValid('pincode') })}>Pincode*</label>
                             </span>
@@ -154,21 +149,18 @@ const Add_property = () => {
                         </div>
                         <div className="field">
                         <span className="p-float-label p-input-icon-right">
-                              
                                 <InputText id="area_name" name="area_name" value={formik.values.area_name} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('area_name') })} />
                                 <label htmlFor="area_name" className={classNames({ 'p-error': isFormFieldValid('area_name') })}>Area Name*</label>
                             </span>
                             {getFormErrorMessage('area_name')}
                         </div>
                         <div className="field">
-                        <span className="p-float-label p-input-icon-right">
-                                
+                        <span className="p-float-label p-input-icon-right">                               
                                 <InputText id="city" name="city" value={formik.values.city} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('city') })} />
                                 <label htmlFor="city" className={classNames({ 'p-error': isFormFieldValid('city') })}>City*</label>
                             </span>
                             {getFormErrorMessage('city')}
                         </div>
-
                         <div className="field-checkbox">
                             <Checkbox inputId="furnished" name="furnished" checked={formik.values.furnished} onChange={formik.handleChange} />
                             <label htmlFor="furnished">Furnished</label>
@@ -181,7 +173,6 @@ const Add_property = () => {
                             <Checkbox inputId="cctv" name="cctv" checked={formik.values.cctv} onChange={formik.handleChange} />
                             <label htmlFor="cctv" >CCTV</label>
                         </div>
-
                         <Button type="submit" label="Add Property" className="mt-2" />
                     </form>
                 </div>

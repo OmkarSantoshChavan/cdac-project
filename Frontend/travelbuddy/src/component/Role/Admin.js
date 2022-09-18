@@ -12,7 +12,7 @@ function Admin(props) {
     const location = useLocation();
     const [userList,setUserList]=useState([]);
     const [showViewUsers,setShowViewUsers]=useState(false);
-    let { name, email, contact_no,address } = location.state;
+    let { name, email, contact_no,address } = location.state || {};
     
     const handleProfile = () => {
         navigate(`/edit_profile`,{state:location.state});

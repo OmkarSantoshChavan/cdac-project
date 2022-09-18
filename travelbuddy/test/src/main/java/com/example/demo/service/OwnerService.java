@@ -29,10 +29,9 @@ public class OwnerService {
 	public PropertyDetails addProperty(int userid,AddPropertyDTO prop) {
 		Users u=urepo.findById(userid).get();
 		Area a=new Area(prop.getPincode(),prop.getArea_name(),prop.getCity());
-		Area a1;
+		{/*Area a1;
 		int pincode=a.getPincode();
-		Optional<Area> a2=arepo.existsAreaByPin(pincode);
-		System.out.println(a2);
+		Optional<Area> a2=arepo.existsAreaByPin(pincode);		
 	      if(a2!=null)
 	      {
 	    	  a1=arepo.getAreaByPin(pincode);
@@ -40,9 +39,8 @@ public class OwnerService {
 	      }
 	      else {
 	    	  a1=arepo.save(a);
-	      }
-		System.out.println(a1);
-		//Area a1=arepo.save(a);
+	      }	*/}	
+		Area a1=arepo.save(a);
 		Facilities f=new Facilities(prop.getFurnished(), prop.getParking(), prop.getSecurity_guard(), prop.getLift(), prop.getCctv());
 		Facilities f1=frepo.save(f);
 		PropertyDetails pd=new PropertyDetails(prop.getAddress(),prop.getRent(),prop.getDesc());
