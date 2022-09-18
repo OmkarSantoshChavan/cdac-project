@@ -28,11 +28,11 @@ function Homepage(props) {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate(`/login`);
+        navigate(`/loginform`);
     }
 
     const handleRegister = () => {
-        navigate(`/registeruser`);
+        navigate(`/register`);
     }
 
     

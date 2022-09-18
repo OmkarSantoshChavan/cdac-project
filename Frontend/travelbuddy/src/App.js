@@ -11,6 +11,8 @@ import Owner from './component/Role/Owner';
 import Admin from './component/Role/Admin';
 import Edit_profile from './component/Role/Edit_profile';
 import Add_property from './component/Property/Add_property';
+import LoginForm from './component/LoginForm';
+import Register from './component/Register';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/loginform" element={<LoginForm />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/registeruser" element={<Registeruser />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/owner" element={<Owner />} />

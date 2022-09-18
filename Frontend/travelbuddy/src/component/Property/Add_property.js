@@ -130,7 +130,6 @@ const Add_property = () => {
                         </div>
                         <div className="field">
                             <span className="p-float-label p-input-icon-right">
-                               
                                 <InputText id="rent" name="rent" value={formik.values.rent} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('rent') })} />
                                 <label htmlFor="rent" className={classNames({ 'p-error': isFormFieldValid('rent') })}>Rent*</label>
                             </span>
@@ -154,7 +153,6 @@ const Add_property = () => {
                         </div>
                         <div className="field">
                         <span className="p-float-label p-input-icon-right">
-                              
                                 <InputText id="area_name" name="area_name" value={formik.values.area_name} onChange={formik.handleChange} className={classNames({ 'p-invalid': isFormFieldValid('area_name') })} />
                                 <label htmlFor="area_name" className={classNames({ 'p-error': isFormFieldValid('area_name') })}>Area Name*</label>
                             </span>
