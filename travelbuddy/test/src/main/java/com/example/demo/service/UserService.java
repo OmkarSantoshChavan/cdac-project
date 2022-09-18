@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -8,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.customexception.CustomerHandlingException;
 import com.example.demo.customexception.ResourceNotFoundException;
+import com.example.demo.dto.PropertyDetailsDTO;
 import com.example.demo.dto.UpdateDTO;
 import com.example.demo.pojos.Users;
+import com.example.demo.repositories.PropertyRepository;
 import com.example.demo.repositories.UserRepository;
 
 
@@ -18,6 +21,8 @@ public class UserService {
 	
 	@Autowired
 	UserRepository urepo;
+	@Autowired
+	PropertyRepository prepo;
 	
 	 public Users loginRequest(String email, String password) {
 		 
@@ -51,5 +56,9 @@ public class UserService {
          userDetails.setAddress(user.getAddress());
          urepo.save(userDetails);
          return userDetails;
-}
+	}
+	
+	public List<PropertyDetailsDTO> getAllProperty() {
+		return prepo.getAllPropertList();
+	}
 }

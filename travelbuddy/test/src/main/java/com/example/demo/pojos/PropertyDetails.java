@@ -110,6 +110,14 @@ public class PropertyDetails {
 	public void setPropertyphoto(List<PropPhotos> propertyphoto) {
 		this.propertyphoto = propertyphoto;
 	}
+	
+	public List<Facilities> getFacilityList() {
+		return facilityList;
+	}
+
+	public void setFacilityList(List<Facilities> facilityList) {
+		this.facilityList = facilityList;
+	}
 
 	@Override
 	public String toString() {
