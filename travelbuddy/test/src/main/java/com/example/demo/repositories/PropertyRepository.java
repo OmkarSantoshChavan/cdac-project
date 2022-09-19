@@ -17,4 +17,7 @@ public interface PropertyRepository extends JpaRepository<PropertyDetails, Integ
 	
 	@Query("select p from PropertyDetails p  join fetch p.areaData a join fetch p.facilityList  where p.id=:pid")
     PropertyDetailsDTO getPropertyDetails(@Param("pid") int id );
+	
+	@Query("select p from PropertyDetails p where p.id=:pid")
+    PropertyDetails getProperty(@Param("pid") int id );
 }

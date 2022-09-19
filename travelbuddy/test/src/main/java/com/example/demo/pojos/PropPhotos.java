@@ -30,9 +30,8 @@ public class PropPhotos {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PropPhotos(int photo_id, byte[] photos, PropertyDetails photoData) {
+	public PropPhotos(byte[] photos, PropertyDetails photoData) {
 		super();
-		this.photo_id = photo_id;
 		this.photos = photos;
 		this.photoData = photoData;
 	}
