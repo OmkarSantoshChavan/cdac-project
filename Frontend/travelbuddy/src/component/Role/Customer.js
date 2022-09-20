@@ -4,11 +4,11 @@ import { Button } from 'primereact/button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Style.css';
 import ViewProperties from './ViewProperties';
-
+import axios from 'axios';
 function Customer(props) {
 
     const [viewProperties, setViewProperties] = useState(false);
-
+    const [properties, setProperties] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
     let { name, email, contact_no, address } = location.state || {};
@@ -17,10 +17,25 @@ function Customer(props) {
         navigate(`/edit_profile`, { state: location.state });
     }
 
+    const handleProperties = () => {
+        
+        axios.get("http://localhost:8080/getallproperty").then(
+            (response) => {                   
+                setViewProperties(true)
+             
+             setProperties(response?.data?.result || [])
+            }
+        );
+            
+
+    }
+
+    
+
     const footer = (
         <span>
             <Button className='profile-button' label="Edit Profile" onClick={handleProfile} />
-            <Button className='profile-button' label="View Properties" onClick={() => setViewProperties(true)} />
+            <Button className='profile-button' label="View Properties" onClick={handleProperties} />
 
         </span>
     );
@@ -30,7 +45,7 @@ function Customer(props) {
     return (
 
         <>
-            {viewProperties ? <ViewProperties />
+            {viewProperties ? <ViewProperties result={properties} />
                 : <Card title="Customer" subTitle="profile details" footer={footer}>
                     <div className='profile-details'>
                         <div> Name :  {name}</div>

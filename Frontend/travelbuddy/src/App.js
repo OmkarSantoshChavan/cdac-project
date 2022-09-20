@@ -13,6 +13,7 @@ import Add_property from './component/Property/Add_property';
 import LoginForm from './component/LoginForm';
 import Register from './component/Register';
 import Image from './assets/Photos/Hotel.jpg';
+import ViewProperties from './component/Role/ViewProperties';
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/edit_profile" element={<Edit_profile />} />
             <Route path="/add_property" element={<Add_property />} />
+            <Route path="/viewproperty" element={<ViewProperties />} />
           </Routes>
         </BrowserRouter>
     </div>
