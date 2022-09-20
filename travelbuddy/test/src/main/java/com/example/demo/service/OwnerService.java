@@ -56,10 +56,10 @@ public class OwnerService {
 		return pd1;
 	}
 	
-	public String AddPhoto(int pid,byte[] pic) {
-		PropertyDetails pd=prepo.getProperty(pid);
-		PropPhotos p=new PropPhotos(pic,pd);
-		photorepo.save(p);		
-		return "photo added successfully";
-	}
+//	public String AddPhoto(int pid,byte[] pic) {
+//		PropertyDetails pd=prepo.getProperty(pid);
+//		PropPhotos p=new PropPhotos(pic,pd);
+//		photorepo.save(p);		
+//		return "photo added successfully";
+//	}
 }

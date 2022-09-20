@@ -61,6 +61,7 @@ public class UserService {
 	public List<PropertyDetailsDTO> getAllProperty() {
 		return prepo.getAllPropertList();
 	}
+	
 	public PropertyDetailsDTO getPropertyDetails(int pid) {
 		 return prepo.getPropertyDetails(pid);
 	}

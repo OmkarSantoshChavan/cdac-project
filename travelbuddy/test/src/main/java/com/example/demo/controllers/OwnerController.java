@@ -29,9 +29,9 @@ public class OwnerController {
   	   return new ResponseDTO<>(HttpStatus.OK, "Property added successfully", os.addProperty(userid,request));
      }
 	 
-	 @PostMapping("/uploadphoto/{pid}")
-	 public ResponseDTO<?>addPhoto(@PathVariable int pid,@RequestBody byte[] pic)
-     {
-  	   return new ResponseDTO<>(HttpStatus.OK, "Photo added successfully", os.AddPhoto(pid,pic));
-     }
+//	 @PostMapping("/uploadphoto/{pid}")
+//	 public ResponseDTO<?>addPhoto(@PathVariable int pid,@RequestBody byte[] pic)
+//     {
+//  	   return new ResponseDTO<>(HttpStatus.OK, "Photo added successfully", os.AddPhoto(pid,pic));
+//     }
 }

@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -32,6 +33,7 @@ public class PropertyDetails {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="userid")
 	@JsonIgnoreProperties("prolist")
+	@JsonIgnore
 	private Users ownerData;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="area_id")

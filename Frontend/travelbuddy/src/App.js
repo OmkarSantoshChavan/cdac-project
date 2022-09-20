@@ -23,7 +23,7 @@ function App() {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     width: '100vw',
-    height: 'auto'
+    height: '100vh'
   };
   
   return (

@@ -12,10 +12,10 @@ import com.example.demo.pojos.PropertyDetails;
 
 @Repository
 public interface PropertyRepository extends JpaRepository<PropertyDetails, Integer> {
-	@Query("select p from PropertyDetails p  join fetch p.areaData a")
+	@Query("select p from PropertyDetails p  join fetch p.areaData a join fetch p.facilityList join fetch p.ownerData o")
     List<PropertyDetailsDTO> getAllPropertList();
 	
-	@Query("select p from PropertyDetails p  join fetch p.areaData a join fetch p.facilityList  where p.id=:pid")
+	@Query("select p from PropertyDetails p  join fetch p.areaData a join fetch p.facilityList join fetch p.ownerData o where p.id=:pid")
     PropertyDetailsDTO getPropertyDetails(@Param("pid") int id );
 	
 	@Query("select p from PropertyDetails p where p.id=:pid")

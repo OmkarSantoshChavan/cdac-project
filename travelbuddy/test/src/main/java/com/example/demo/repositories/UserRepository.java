@@ -13,4 +13,7 @@ import com.example.demo.pojos.Users;
 public interface UserRepository extends JpaRepository<Users, Integer> {
 	@Query("select  u from Users u where u.email=:em and u.password=:pass")
     Optional<Users> Login(@Param("em") String email,@Param("pass") String password);
+	
+	@Query("select  u from Users u where u.userid=:userid")
+    Users getUser(@Param("userid")int userid);
 }

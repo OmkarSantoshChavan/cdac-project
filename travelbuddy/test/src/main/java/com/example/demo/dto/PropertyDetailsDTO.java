@@ -3,6 +3,7 @@ package com.example.demo.dto;
 import java.util.List;
 
 import com.example.demo.pojos.Facilities;
+import com.example.demo.pojos.Users;
 
 public interface PropertyDetailsDTO {
 	int getPid();
@@ -22,5 +23,10 @@ public interface PropertyDetailsDTO {
     	 String getSecurity_guard();
     	 String getLift();
     	 String getCctv();
+     }
+     Users getOwnerData();
+     interface ownerInfo{
+    	 int getUserid();
+    	 String getName();
      }
 }
