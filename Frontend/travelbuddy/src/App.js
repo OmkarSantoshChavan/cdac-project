@@ -14,6 +14,7 @@ import LoginForm from './component/LoginForm';
 import Register from './component/Register';
 import Image from './assets/Photos/Hotel.jpg';
 import ViewProperties from './component/Role/ViewProperties';
+import BookProperty from './component/BookProperty';
 
 function App() {
   
@@ -40,6 +41,7 @@ function App() {
             <Route path="/edit_profile" element={<Edit_profile />} />
             <Route path="/add_property" element={<Add_property />} />
             <Route path="/viewproperty" element={<ViewProperties />} />
+            <Route path="/bookproperty" element={<BookProperty />} />
           </Routes>
         </BrowserRouter>
     </div>
