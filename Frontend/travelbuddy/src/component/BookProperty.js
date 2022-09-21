@@ -8,15 +8,9 @@ import { useFormik } from "formik";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
-
-import { Password } from "primereact/password";
-
 import { Dialog } from "primereact/dialog";
-import { Divider } from "primereact/divider";
-import { classNames } from "primereact/utils";
 import { Card } from "primereact/card";
 import  Image  from './TravelBuddy.png';
-
 import "./Style.css";
 import Homepage from "./Homepage";
 
@@ -30,19 +24,20 @@ export const BookProperty = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      role: null,
-      address: "",
-      aadhar_card: "",
-      contact_no: "",
+      pid: "",
+      booking_date: "",
+      from_date: "",
+      till_date: "",
+      total_amt: "",
+      amount: "",
+      pmode: null,
+      ptype: null
     },
    
     onSubmit: (data) => {
         
       setFormData(data);
-      axios.post("http://localhost:8080/registeruser", data).then(
+      axios.post("http://localhost:8080/bookproperty", data).then(
             (response) => {
                 console.log(response);
             }, (error) => {
@@ -56,15 +51,7 @@ export const BookProperty = (props) => {
   });
 
 
-  const isFormFieldValid = (name) =>
-    !!(formik.touched[name] && formik.errors[name]);
-  const getFormErrorMessage = (name) => {
-    return (
-      isFormFieldValid(name) && (
-        <small className="p-error">{formik.errors[name]}</small>
-      )
-    );
-  };
+  
 
   const dialogFooter = (
     <div className="p-d-flex p-jc-center">
@@ -76,19 +63,7 @@ export const BookProperty = (props) => {
       />
     </div>
   );
-  const passwordHeader = <h6>Pick a password</h6>;
-  const passwordFooter = (
-    <React.Fragment>
-      <Divider />
-      <p className="p-mt-2">Suggestions</p>
-      <ul className="p-pl-2 p-ml-2 p-mt-0" style={{ lineHeight: "1.5" }}>
-        <li>At least one lowercase</li>
-        <li>At least one uppercase</li>
-        <li>At least one numeric</li>
-        <li>Minimum 8 characters</li>
-      </ul>
-    </React.Fragment>
-  );
+  
 
   const header = (<>
       <img src={Image} alt="hyper" height={80} style={{width:"20%"}} className="mb-3" />
@@ -130,20 +105,16 @@ export const BookProperty = (props) => {
                     value={formik.values.pid}
                     onChange={formik.handleChange}
                     autoFocus
-                    className={classNames({
-                      "p-invalid": isFormFieldValid("pid"),
-                    })}
+                    
                   />
                   <label
                     htmlFor="pid"
-                    className={classNames({
-                      "p-error": isFormFieldValid("pid"),
-                    })}
+                    
                   >
                     pid*
                   </label>
                 </span>
-                {getFormErrorMessage("pid")}
+                
               </div>
               <div className="p-field">
                 <span className="p-float-label p-input-icon-right">
@@ -153,20 +124,16 @@ export const BookProperty = (props) => {
                     name="booking_date"
                     value={formik.values.booking_date}
                     onChange={formik.handleChange}
-                    className={classNames({
-                      "p-invalid": isFormFieldValid("booking_date"),
-                    })}
+                    
                   />
                   <label
                     htmlFor="booking_date"
-                    className={classNames({
-                      "p-error": isFormFieldValid("booking_date"),
-                    })}
+                   
                   >
                     Booking Date*
                   </label>
                 </span>
-                {getFormErrorMessage("booking_date")}
+                
               </div>
 
               <div className="p-field">
@@ -176,20 +143,16 @@ export const BookProperty = (props) => {
                     name="from_date"
                     value={formik.values.contact_no}
                     onChange={formik.handleChange}
-                    className={classNames({
-                      "p-invalid": isFormFieldValid("from_date"),
-                    })}
+                    
                   />
                   <label
                     htmlFor="from_date"
-                    className={classNames({
-                      "p-error": isFormFieldValid("from_date"),
-                    })}
+                   
                   >
                     From Date*
                   </label>
                 </span>
-                {getFormErrorMessage("from_date")}
+               
               </div>
 
               <div className="p-field">
@@ -199,20 +162,16 @@ export const BookProperty = (props) => {
                     name="till_date"
                     value={formik.values.address}
                     onChange={formik.handleChange}
-                    className={classNames({
-                      "p-invalid": isFormFieldValid("till_date"),
-                    })}
+                    
                   />
                   <label
                     htmlFor="till_date"
-                    className={classNames({
-                      "p-error": isFormFieldValid("till_date"),
-                    })}
+                    
                   >
                     Till Date*
                   </label>
                 </span>
-                {getFormErrorMessage("till_date")}
+               
               </div>
 
               <div className="p-field">
@@ -222,20 +181,16 @@ export const BookProperty = (props) => {
                     name="total_amt"
                     value={formik.values.total_amt}
                     onChange={formik.handleChange}
-                    className={classNames({
-                      "p-invalid": isFormFieldValid("total_amt"),
-                    })}
+                    
                   />
                   <label
                     htmlFor="total_amt"
-                    className={classNames({
-                      "p-error": isFormFieldValid("total_amt"),
-                    })}
+                   
                   >
                     Total Amount*
                   </label>
                 </span>
-                {getFormErrorMessage("total_amt")}
+               
               </div>
 
               <div className="p-field">
@@ -246,29 +201,22 @@ export const BookProperty = (props) => {
                     value={formik.values.amount}
                     onChange={formik.handleChange}
                     toggleMask
-                    className={classNames({
-                      "p-invalid": isFormFieldValid("amount"),
-                    })}
-                    header={passwordHeader}
-                    footer={passwordFooter}
+                    
+                    
                   />
                   <label
                     htmlFor="amount"
-                    className={classNames({
-                      "p-error": isFormFieldValid("amount"),
-                    })}
+                    
                   >
                     Amount*
                   </label>
                 </span>
-                {getFormErrorMessage("amount")}
+               
               </div>
               <div className="p-field">
                 <span className="p-float-label">
                   <Dropdown
-                    className={classNames({
-                      "p-error": isFormFieldValid("pmode"),
-                    })}
+                   
                     id="pmode"
                     name="pmode"
                     value={formik.values.pmode}
@@ -277,14 +225,12 @@ export const BookProperty = (props) => {
                   />
                   <label htmlFor="country">Payment mode</label>
                 </span>
-                {getFormErrorMessage("pmode")}
+               
               </div>
               <div className="p-field">
                 <span className="p-float-label">
                   <Dropdown
-                    className={classNames({
-                      "p-error": isFormFieldValid("ptype"),
-                    })}
+                   
                     id="ptype"
                     name="ptype"
                     value={formik.values.ptype}
@@ -293,7 +239,7 @@ export const BookProperty = (props) => {
                   />
                   <label htmlFor="country">Payment Type</label>
                 </span>
-                {getFormErrorMessage("ptype")}
+                
               </div>
 
 
