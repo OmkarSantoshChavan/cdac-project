@@ -13,31 +13,37 @@ import { Card } from "primereact/card";
 import  Image  from './TravelBuddy.png';
 import "./Style.css";
 import Homepage from "./Homepage";
+import { Calendar } from 'primereact/calendar';
+import {useLocation} from 'react-router-dom';
 
 export const BookProperty = (props) => {
   let { defaultPmode,defaultPtype } = props;
+  let location = useLocation();
+  let { pid, address } = location?.state || {};
 
-  const [pmode, setPmode] = useState(defaultPmode);
-  const [ptype, setPtype] = useState(defaultPtype);
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
+  const [fromAndToDate, setFromAndToDate] = useState(null);
 
   const formik = useFormik({
     initialValues: {
-      pid: "",
-      booking_date: "",
-      from_date: "",
-      till_date: "",
+      pid: pid,
+      booking_date: new Date().toLocaleDateString(),
       total_amt: "",
       amount: "",
-      pmode: null,
-      ptype: null
+      pmode: "",
+      ptype: ""
     },
    
     onSubmit: (data) => {
-        
-      setFormData(data);
-      axios.post("http://localhost:8080/bookproperty", data).then(
+        let allocateDate = fromAndToDate;
+        let from_date =  allocateDate?.[0]?.toLocaleDateString();
+        let till_date = allocateDate?.[1]?.toLocaleDateString();
+      setFormData({...data, from_date, till_date});
+      debugger
+
+      let userId = localStorage.getItem('userId');
+      axios.post(`http://localhost:8080/bookproperty/${userId}`, data).then(
             (response) => {
                 console.log(response);
             }, (error) => {
@@ -47,11 +53,9 @@ export const BookProperty = (props) => {
       setShowMessage(true);
 
       formik.resetForm();
+      setFromAndToDate(null);
     },
   });
-
-
-  
 
   const dialogFooter = (
     <div className="p-d-flex p-jc-center">
@@ -100,18 +104,16 @@ export const BookProperty = (props) => {
               <div className="p-field">
                 <span className="p-float-label">
                   <InputText
-                    id="pid"
-                    name="pid"
-                    value={formik.values.pid}
-                    onChange={formik.handleChange}
-                    autoFocus
-                    
+                    id="address"
+                    name="address"
+                    value={address}
+                    disabled
                   />
                   <label
-                    htmlFor="pid"
+                    htmlFor="address"
                     
                   >
-                    pid*
+                    Property Name*
                   </label>
                 </span>
                 
@@ -124,7 +126,7 @@ export const BookProperty = (props) => {
                     name="booking_date"
                     value={formik.values.booking_date}
                     onChange={formik.handleChange}
-                    
+                    disabled
                   />
                   <label
                     htmlFor="booking_date"
@@ -138,40 +140,11 @@ export const BookProperty = (props) => {
 
               <div className="p-field">
                 <span className="p-float-label p-input-icon-right">
-                  <InputText
-                    id="from_date"
-                    name="from_date"
-                    value={formik.values.contact_no}
-                    onChange={formik.handleChange}
-                    
-                  />
-                  <label
-                    htmlFor="from_date"
-                   
-                  >
-                    From Date*
-                  </label>
+                 
+                    <Calendar id="range" value={fromAndToDate} onChange={(e) => setFromAndToDate(e.value)} selectionMode="range" readOnlyInput />
+   
+                  <label htmlFor="fromandtodate">Check In and Out Date</label>
                 </span>
-               
-              </div>
-
-              <div className="p-field">
-                <span className="p-float-label p-input-icon-right">
-                  <InputText
-                    id="till_date"
-                    name="till_date"
-                    value={formik.values.address}
-                    onChange={formik.handleChange}
-                    
-                  />
-                  <label
-                    htmlFor="till_date"
-                    
-                  >
-                    Till Date*
-                  </label>
-                </span>
-               
               </div>
 
               <div className="p-field">
@@ -200,9 +173,6 @@ export const BookProperty = (props) => {
                     name="amount"
                     value={formik.values.amount}
                     onChange={formik.handleChange}
-                    toggleMask
-                    
-                    
                   />
                   <label
                     htmlFor="amount"

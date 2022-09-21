@@ -33,7 +33,7 @@ function LoginForm() {
     const addDataToServer = (data) => {
         axios.post("http://localhost:8080/login", data).then(
             (response) => {
-                console.log(response.data);
+                localStorage.setItem('userid', response?.data?.userid);
                 if(response.data.role === "admin")
                 {
                     localStorage.setItem("loggedinuser",JSON.stringify(response.data));
