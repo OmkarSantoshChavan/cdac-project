@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.dto.BookPropertyDTO;
+import com.example.demo.dto.PropertyDetailsDTO;
 import com.example.demo.pojos.Booking;
 import com.example.demo.pojos.Payment;
 import com.example.demo.pojos.PropertyDetails;
@@ -23,6 +26,10 @@ public class CustomerService {
 	@Autowired
 	UserRepository urepo;
 
+	public List<Booking> getBookings(int pid) {
+		return brepo.getBookings(pid);
+	}
+	
 	public String bookProperty(int userid, BookPropertyDTO bprop) {
 		Users u=urepo.getUser(userid);
 		PropertyDetails pd=prepo.getProperty(bprop.getPid());

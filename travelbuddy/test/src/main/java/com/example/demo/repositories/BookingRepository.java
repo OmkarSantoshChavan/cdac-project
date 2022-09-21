@@ -10,6 +10,6 @@ import com.example.demo.pojos.Booking;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
-//	@Query("select b from Booking b where b.pid=:pid and b.from_date>:date")
-//    List<Booking> getAllBookings(@Param("pid") int id );
+	@Query(value="select * from Booking b where pid=pid and from_date>CURDATE()",nativeQuery=true)
+	List<Booking> getBookings(@Param("pid") int pid );
 }
