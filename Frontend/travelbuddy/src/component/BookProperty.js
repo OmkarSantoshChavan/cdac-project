@@ -39,11 +39,12 @@ export const BookProperty = (props) => {
         let allocateDate = fromAndToDate;
         let from_date =  allocateDate?.[0]?.toLocaleDateString();
         let till_date = allocateDate?.[1]?.toLocaleDateString();
-      setFormData({...data, from_date, till_date});
+        let param={...data, from_date, till_date,total_amt:parseInt(data.total_amt),amount:parseInt(data.amount)}
+      setFormData(param);
       debugger
 
-      let userId = localStorage.getItem('userId');
-      axios.post(`http://localhost:8080/bookproperty/${userId}`, data).then(
+      let userId = localStorage.getItem('userid');
+      axios.post(`http://localhost:8080/bookproperty/${userId}`, param).then(
             (response) => {
                 console.log(response);
             }, (error) => {

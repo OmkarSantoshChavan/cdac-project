@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class BookPropertyDTO {
 	private int pid;
-	private LocalDate booking_date;
-	private LocalDate from_date;
-	private LocalDate till_date;
+	private String booking_date;
+	private String from_date;
+	private String till_date;
 	private int total_amt;
 	private int amount;
 	private String pmode;
@@ -17,22 +17,22 @@ public class BookPropertyDTO {
 	public void setPid(int pid) {
 		this.pid = pid;
 	}
-	public LocalDate getBooking_date() {
+	public String getBooking_date() {
 		return booking_date;
 	}
-	public void setBooking_date(LocalDate booking_date) {
+	public void setBooking_date(String booking_date) {
 		this.booking_date = booking_date;
 	}
-	public LocalDate getFrom_date() {
+	public String getFrom_date() {
 		return from_date;
 	}
-	public void setFrom_date(LocalDate from_date) {
+	public void setFrom_date(String from_date) {
 		this.from_date = from_date;
 	}
-	public LocalDate getTill_date() {
+	public String getTill_date() {
 		return till_date;
 	}
-	public void setTill_date(LocalDate till_date) {
+	public void setTill_date(String till_date) {
 		this.till_date = till_date;
 	}
 	public int getTotal_amt() {

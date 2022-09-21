@@ -33,12 +33,11 @@ function ViewProperties(props) {
                     let { pid, address, rent, areaData, description, facilityList } = card || {};
                     let { furnished, parking, security_guard, lift, cctv } = facilityList?.[0] || {};
                     let { area_name, city, pincode } = areaData?.[0] || {};
-
                     return <Card
                         className={`property-cards`}
                         key={`property-${key}`}
-                        footer={<Footer />}
-                        header={<Header card={card} pid={pid} address={address}/>}
+                        footer={<Footer pid={pid} address={address}/>}
+                        header={<Header card={card} />}
                     >
                         <div className='card-content'>
                             <div className='card-property-name'>
