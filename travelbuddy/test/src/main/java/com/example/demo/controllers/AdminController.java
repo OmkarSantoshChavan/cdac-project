@@ -19,10 +19,7 @@ import com.example.demo.service.AdminService;
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
-	public AdminController()
-	{
-		System.out.println("in ctor:-"+getClass().getName());
-	}
+	
 	@GetMapping("/fetchallusers")
 	public ResponseDTO<?> fetchAllUsers()
 	{

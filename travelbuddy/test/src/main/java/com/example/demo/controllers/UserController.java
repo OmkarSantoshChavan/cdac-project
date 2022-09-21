@@ -63,7 +63,7 @@ public class UserController {
    		return new ResponseDTO<>(HttpStatus.OK,"Fetching property list successfully",us.getAllProperty());
    	}
 	@GetMapping("/propertydetails/{pid}")
-  	public ResponseDTO<?> getAllPropertyHomePage(@PathVariable int pid)
+  	public ResponseDTO<?> getPropertyDetails(@PathVariable int pid)
   	{
   		return new ResponseDTO<>(HttpStatus.OK,"Fetching property details successfully",us.getPropertyDetails(pid));
   	}
