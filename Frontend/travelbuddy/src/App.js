@@ -15,6 +15,8 @@ import Register from './component/Register';
 import Image from './assets/Photos/Hotel.jpg';
 import ViewProperties from './component/Role/ViewProperties';
 import BookProperty from './component/BookProperty';
+import AboutUs from './component/AboutUs';
+import ContactUs from './component/ContactUs';
 
 function App() {
   
@@ -42,6 +44,8 @@ function App() {
             <Route path="/add_property" element={<Add_property />} />
             <Route path="/viewproperty" element={<ViewProperties />} />
             <Route path="/bookproperty" element={<BookProperty />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/contactus" element={<ContactUs />} />
           </Routes>
         </BrowserRouter>
     </div>

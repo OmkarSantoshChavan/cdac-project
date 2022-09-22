@@ -4,6 +4,8 @@ import { Button } from 'primereact/button';
 import { useNavigate,useLocation } from 'react-router-dom';
 import './Style.css';
 
+import AdminNavbar from './AdminNavbar';
+
 function Owner(props) {
 
     const navigate = useNavigate();
@@ -29,6 +31,8 @@ function Owner(props) {
    
     console.log(location)
     return (
+        <>
+        <AdminNavbar/>
         <Card title="Owner" subTitle="profile details" footer={footer}>
             <div className='profile-details'>
                 <div> Name :  {name}</div>
@@ -37,6 +41,7 @@ function Owner(props) {
                 <div> Address : {address}</div>
             </div>
         </Card>
+        </>
     )
 };
 

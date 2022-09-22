@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "primereact/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 import { Image } from "primereact/image";
 import logo from "./Images/TravelBuddy.png";
 
@@ -15,6 +15,14 @@ function Homepage(props) {
 
   const handleRegister = () => {
     navigate(`/register`);
+  };
+
+  const handleAboutus = () => {
+    navigate(`/aboutus`);
+  };
+
+  const handleContactus = () => {
+    navigate(`/contactus`);
   };
 
   const logoStyle = {
@@ -35,6 +43,16 @@ function Homepage(props) {
             </div> */}
 
         <div className="access-grid">
+          <Button
+            label="About Us"
+            onClick={handleAboutus}
+            className="aboutus-button"
+          />
+          <Button
+            label="Contact Us"
+            onClick={handleContactus}
+            className="contactus-button"
+          />
           <Button
             label="Login"
             onClick={handleLogin}

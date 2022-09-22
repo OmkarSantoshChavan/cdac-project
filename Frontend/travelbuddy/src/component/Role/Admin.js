@@ -5,6 +5,7 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import './Style.css';
 import ViewUsers from '../ViewUsers';
 import axios from 'axios';
+import AdminNavbar from './AdminNavbar';
 
 function Admin(props) {
 
@@ -40,6 +41,8 @@ function Admin(props) {
    
     console.log(location)
     return (
+        <>
+        <AdminNavbar/>
         <Card title="Admin" subTitle={showViewUsers?"User Details":"profile details"} footer={footer}>
             {showViewUsers?<ViewUsers userData={userList}/> : <div className='profile-details'>
                 <div> Name :  {name}</div>
@@ -48,7 +51,8 @@ function Admin(props) {
                 <div> Address : {address}</div>
             </div>}
         </Card>
-    )
+        </>
+    );
 };
 
 Admin.defaultProps = {

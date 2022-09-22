@@ -5,6 +5,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './Style.css';
 import ViewProperties from './ViewProperties';
 import axios from 'axios';
+
+import AdminNavbar from './AdminNavbar';
+
 function Customer(props) {
 
     const [viewProperties, setViewProperties] = useState(false);
@@ -45,6 +48,7 @@ function Customer(props) {
     return (
 
         <>
+            <AdminNavbar/>
             {viewProperties ? <ViewProperties result={properties} />
                 : <Card title="Customer" subTitle="profile details" footer={footer}>
                     <div className='profile-details'>

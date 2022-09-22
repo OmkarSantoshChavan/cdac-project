@@ -15,6 +15,21 @@
     height: 40px;
     font-size: 15px;
     margin: 6px;
+}
+
+.aboutus-button{
+    width: 105px;
+    height: 40px;
+    font-size: 15px;
+    margin: 6px;
+    
+}
+
+.contactus-button{
+    width: 110;
+    height: 40px;
+    font-size: 15px;
+    margin: 6px;
     
 }
 
@@ -51,7 +66,7 @@
 .access-grid {
     margin: 18px;
     left: 102%;
-    margin-left: 58%;
+    margin-left:48%;
 }
 
 .inner-grid-container{
