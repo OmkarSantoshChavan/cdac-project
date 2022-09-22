@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from 'primereact/button';
 import  Image  from './TravelBuddy.png';
 import Homepage from './Homepage';
+import Navbar from '../Navbar';
 
 function LoginForm() {
     const [customer, setCustomer] = useState({
@@ -63,7 +64,8 @@ function LoginForm() {
     }
 
     return (
-        <Homepage>
+        <>
+        <Navbar/>
         <div className="flex align-items-center justify-content-center">
         <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div className="text-center mb-5">
@@ -85,7 +87,7 @@ function LoginForm() {
     </div>
 </div>
 
-</Homepage>
+</>
     )
 }
 export default LoginForm;

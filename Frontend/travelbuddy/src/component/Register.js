@@ -19,6 +19,7 @@ import  Image  from './TravelBuddy.png';
 
 import "./Style.css";
 import Homepage from "./Homepage";
+import Navbar from "../Navbar";
 
 export const Register = (props) => {
   let { defaultRoles } = props;
@@ -131,7 +132,8 @@ export const Register = (props) => {
   </>);
 
   return (
-    <Homepage>
+    <>
+    <Navbar/>
       <Card className="form-demo" header={header} >
         <Dialog
           visible={showMessage}
@@ -320,7 +322,7 @@ export const Register = (props) => {
           </div>
         </div>
       </Card>
-    </Homepage>
+      </>
   );
 };
 

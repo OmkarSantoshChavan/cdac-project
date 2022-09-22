@@ -5,6 +5,7 @@ import './Style.css';
 import axios from 'axios';
 import react, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import AdminNavbar from '../../component/Role/AdminNavbar'
 
 function Edit_profile(props) { 
 
@@ -60,6 +61,8 @@ function Edit_profile(props) {
 
 
     return (
+        <>
+        <AdminNavbar/>
         <Card title="Edit Profile" subTitle="profile details" footer={footer}>
             <div className='profile-details'>
                 Name: <input type="text" name="name" className="edit_profile_input" value={user.name} onChange={(e) => onInputChange(e)}></input>
@@ -69,6 +72,7 @@ function Edit_profile(props) {
                 Address : <input type="text" name="address" value={user.address} onChange={(e) => onInputChange(e)}></input>
             </div>
         </Card>
+        </>
     )
 };
 

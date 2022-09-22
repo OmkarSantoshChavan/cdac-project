@@ -13,6 +13,7 @@ import { classNames } from 'primereact/utils';
 import './Style.css';
 import { Card } from 'primereact/card';
 import axios from 'axios';
+import AdminNavbar from '../Role/AdminNavbar';
 
 const Add_property = () => {
    
@@ -104,6 +105,8 @@ const Add_property = () => {
     const dialogFooter = <div className="flex justify-content-center"><Button label="OK" className="p-button-text" autoFocus onClick={() => setShowMessage(false)} /></div>;
 
     return (
+        <>
+        <AdminNavbar/>
         <Card>
         <div className="form-demo">
             <Dialog visible={showMessage} onHide={() => setShowMessage(false)} position="top" footer={dialogFooter} showHeader={false} breakpoints={{ '960px': '80vw' }} style={{ width: '30vw' }}>
@@ -179,6 +182,7 @@ const Add_property = () => {
             </div>
         </div>
         </Card>
+        </>
     );
 }
                 
