@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import java.util.List;
 
+import com.example.demo.pojos.Area;
 import com.example.demo.pojos.Facilities;
 import com.example.demo.pojos.Users;
 
@@ -10,7 +11,7 @@ public interface PropertyDetailsDTO {
 	String getAddress();
 	String getRent();
 	String getDescription();
-   List <AreaInfo> getAreaData();
+	Area getAreaData();
     interface AreaInfo{
     	 String getArea_name();
     	 String getCity();
@@ -24,9 +25,9 @@ public interface PropertyDetailsDTO {
     	 String getLift();
     	 String getCctv();
      }
-     Users getOwnerData();
-     interface ownerInfo{
-    	 int getUserid();
-    	 String getName();
-     }
+//     Users getOwnerData();
+//     interface ownerInfo{
+//    	 int getUserid();
+//    	 String getName();
+//     }
 }

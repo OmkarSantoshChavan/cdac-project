@@ -28,6 +28,11 @@ public class Payment {
 	@JoinColumn(name="bid")
 	private Booking bookingData;
 	
+	public Payment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Payment(int amount, String pmode, String ptype) {
 		super();
 		this.amount = amount;

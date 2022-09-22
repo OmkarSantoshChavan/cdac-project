@@ -94,7 +94,7 @@ export const BookProperty = (props) => {
             ></i>
             <h5>Booking Successful!</h5>
             <p style={{ lineHeight: 1.5, textIndent: "1rem" }}>
-              Your booking is successfull with name:<b>{formData.name}</b> ;
+              Your booking is successfull
             </p>
           </div>
         </Dialog>

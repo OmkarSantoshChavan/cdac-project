@@ -1,7 +1,5 @@
 package com.example.demo.pojos;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +36,12 @@ public class Booking {
     @JsonIgnoreProperties("facilityList")
 	@JsonIgnore
     private PropertyDetails propertyData;
-	
+		
+	public Booking() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Booking(String booking_date, String from_date,String till_date, int total_amt) {
 		super();
 		this.booking_date = booking_date;

@@ -1,7 +1,5 @@
 package com.example.demo.dto;
 
-import java.time.LocalDate;
-
 public class BookPropertyDTO {
 	private int pid;
 	private String booking_date;
