@@ -10,21 +10,29 @@ import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { Card } from "primereact/card";
-import  Image  from './TravelBuddy.png';
+import Image from './TravelBuddy.png';
 import "./Style.css";
 import Homepage from "./Homepage";
 import { Calendar } from 'primereact/calendar';
-import {useLocation} from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
+import AdminNavbar from "./Role/AdminNavbar";
+import moment from "moment";
 export const BookProperty = (props) => {
-  let { defaultPmode,defaultPtype } = props;
+  let { defaultPmode, defaultPtype } = props;
   let location = useLocation();
-  let { pid, address } = location?.state || {};
+  let { pid, address, rent } = location?.state || {};
 
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
-  const [fromAndToDate, setFromAndToDate] = useState(null);
+  const [from_date, setFromdate] = useState(null);
+  const [till_date, setTilldate] = useState(null);
+  const [checkAvailability, setCheckAvailability] = useState(false);
 
+
+  const calAmount = (from_date, till_date, rent) => {
+    let totaldays = moment(new Date(till_date)).diff(moment(new Date(from_date)), "days");
+    return totaldays * rent;
+  }
   const formik = useFormik({
     initialValues: {
       pid: pid,
@@ -34,27 +42,31 @@ export const BookProperty = (props) => {
       pmode: "",
       ptype: ""
     },
-   
+
     onSubmit: (data) => {
-        let allocateDate = fromAndToDate;
-        let from_date =  allocateDate?.[0]?.toLocaleDateString();
-        let till_date = allocateDate?.[1]?.toLocaleDateString();
-        let param={...data, from_date, till_date,total_amt:parseInt(data.total_amt),amount:parseInt(data.amount)}
+
+
+      let fromDate = moment(new Date(from_date)).format("MM/DD/YYYY");
+      let tillDate = moment(new Date(till_date)).format("MM/DD/YYYY");
+
+      let totalAmount = calAmount(from_date, till_date, rent);
+      let param = { ...data, "from_date": fromDate, "till_date": tillDate, total_amt: parseInt(totalAmount), amount: parseInt(data.amount) }
       setFormData(param);
-      debugger
+
 
       let userId = localStorage.getItem('userid');
       axios.post(`http://localhost:8080/bookproperty/${userId}`, param).then(
-            (response) => {
-                console.log(response);
-            }, (error) => {
-                console.log(error);
-            }
-        );
+        (response) => {
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        }
+      );
       setShowMessage(true);
 
       formik.resetForm();
-      setFromAndToDate(null);
+      setFromdate(null);
+      setTilldate(null);
     },
   });
 
@@ -68,15 +80,35 @@ export const BookProperty = (props) => {
       />
     </div>
   );
-  
+
 
   const header = (<>
-      <img src={Image} alt="hyper" height={80} style={{width:"20%"}} className="mb-3" />
+    <img src={Image} alt="hyper" height={80} style={{ width: "20%" }} className="mb-3" />
     <h1 className="p-text-center">Book Property</h1>
   </>);
 
+  const onCheckAvailability  = ( ) =>{
+    debugger
+    let param = {
+      pid,
+      from_date : from_date?.toLocaleDateString(),
+      till_date : till_date?.toLocaleDateString()
+    }
+
+    axios.post(`http://localhost:8080/validatedates/${pid}`, param).then(
+      (response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+
   return (
-    <Homepage>
+    <>
+      <AdminNavbar />
+
       <Card className="form-demo" header={header} >
         <Dialog
           visible={showMessage}
@@ -99,9 +131,9 @@ export const BookProperty = (props) => {
           </div>
         </Dialog>
 
-        <div className="p-d-flex p-jc-center" style={{marginTop: "-66px"}}>
+        <div className="p-d-flex p-jc-center" style={{ marginTop: "-66px" }}>
           <div className="card">
-            <form onSubmit={formik.handleSubmit} className="p-fluid">
+            <form  className="p-fluid">
               <div className="p-field">
                 <span className="p-float-label">
                   <InputText
@@ -112,16 +144,16 @@ export const BookProperty = (props) => {
                   />
                   <label
                     htmlFor="address"
-                    
+
                   >
                     Property Name*
                   </label>
                 </span>
-                
+
               </div>
               <div className="p-field">
                 <span className="p-float-label p-input-icon-right">
-                  
+
                   <InputText
                     id="booking_date"
                     name="booking_date"
@@ -131,118 +163,129 @@ export const BookProperty = (props) => {
                   />
                   <label
                     htmlFor="booking_date"
-                   
+
                   >
                     Booking Date*
                   </label>
                 </span>
-                
+
               </div>
 
               <div className="p-field">
                 <span className="p-float-label p-input-icon-right">
-                 
-                    <Calendar id="range" value={fromAndToDate} onChange={(e) => setFromAndToDate(e.value)} selectionMode="range" readOnlyInput />
-   
-                  <label htmlFor="fromandtodate">Check In and Out Date</label>
+
+                  <Calendar id="basic" name="from_date" value={from_date} onChange={(e) => setFromdate(e.value)} dateFormat="mm-dd-yy" readOnlyInput />
+
+                  <label htmlFor="fromdate">Check In </label>
                 </span>
               </div>
 
               <div className="p-field">
+                <span className="p-float-label p-input-icon-right">
+
+                  <Calendar id="basic" name="till_date" value={till_date} onChange={(e) => setTilldate(e.value)} dateFormat="mm-dd-yy" readOnlyInput />
+
+                  <label htmlFor="tilldate">Check Out </label>
+                </span>
+              </div>
+
+              {checkAvailability ? <> <div className="p-field">
                 <span className="p-float-label p-input-icon-right">
                   <InputText
                     id="total_amt"
                     name="total_amt"
-                    value={formik.values.total_amt}
-                    onChange={formik.handleChange}
-                    
+                    value={calAmount(from_date, till_date, rent)}
+                    //onChange={formik.handleChange}
+                    disabled={true}
                   />
                   <label
                     htmlFor="total_amt"
-                   
+
                   >
                     Total Amount*
                   </label>
                 </span>
-               
+
               </div>
 
-              <div className="p-field">
-                <span className="p-float-label">
-                  <InputText
-                    id="amount"
-                    name="amount"
-                    value={formik.values.amount}
-                    onChange={formik.handleChange}
-                  />
-                  <label
-                    htmlFor="amount"
-                    
-                  >
-                    Amount*
-                  </label>
-                </span>
-               
-              </div>
-              <div className="p-field">
-                <span className="p-float-label">
-                  <Dropdown
-                   
-                    id="pmode"
-                    name="pmode"
-                    value={formik.values.pmode}
-                    onChange={formik.handleChange}
-                    options={defaultPmode}
-                  />
-                  <label htmlFor="country">Payment mode</label>
-                </span>
-               
-              </div>
-              <div className="p-field">
-                <span className="p-float-label">
-                  <Dropdown
-                   
-                    id="ptype"
-                    name="ptype"
-                    value={formik.values.ptype}
-                    onChange={formik.handleChange}
-                    options={defaultPtype}
-                  />
-                  <label htmlFor="country">Payment Type</label>
-                </span>
-                
-              </div>
+                <div className="p-field">
+                  <span className="p-float-label">
+                    <InputText
+                      id="amount"
+                      name="amount"
+                      value={formik.values.amount}
+                      onChange={formik.handleChange}
+                    />
+                    <label
+                      htmlFor="amount"
+
+                    >
+                      Booking Amount*
+                    </label>
+                  </span>
+
+                </div>
+                <div className="p-field">
+                  <span className="p-float-label">
+                    <Dropdown
+
+                      id="pmode"
+                      name="pmode"
+                      value={formik.values.pmode}
+                      onChange={formik.handleChange}
+                      options={defaultPmode}
+                    />
+                    <label htmlFor="country">Payment mode</label>
+                  </span>
+
+                </div>
+                <div className="p-field">
+                  <span className="p-float-label">
+                    <Dropdown
+
+                      id="ptype"
+                      name="ptype"
+                      value={formik.values.ptype}
+                      onChange={formik.handleChange}
+                      options={defaultPtype}
+                    />
+                    <label htmlFor="country">Payment Type</label>
+                  </span>
+
+                </div>
 
 
-              <Button type="submit" label="Submit" className="p-mt-2" />
+                <Button type="submit" label="Submit" className="p-mt-2" onClick={()=> formik.handleSubmit()}/> </> : 
+                 <Button  label="Check Availability" className="adasd" onClick={()=> onCheckAvailability()} />
+              }
             </form>
           </div>
         </div>
       </Card>
-    </Homepage>
+    </>
   );
 };
 
 BookProperty.defaultProps = {
-    defaultPmode: [
-      {
-        value: "cash",
-        label: "Cash",
-      },
-      {
-        value: "upi",
-        label: "UPI",
-      },
-    ],
-    defaultPtype: [
-        {
-            value:"advance",
-            label:"Booking Amount"
-        },
-        {
-            value:"full",
-            label:"Full Payment"
-        }
-    ]
-  };
+  defaultPmode: [
+    {
+      value: "card",
+      label: "Card",
+    },
+    {
+      value: "upi",
+      label: "UPI",
+    },
+  ],
+  defaultPtype: [
+    {
+      value: "advance",
+      label: "Booking Amount"
+    },
+    {
+      value: "full",
+      label: "Full Payment"
+    }
+  ]
+};
 export default BookProperty;
