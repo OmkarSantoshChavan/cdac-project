@@ -15,16 +15,21 @@ import "./Style.css";
 import Homepage from "./Homepage";
 import { Calendar } from 'primereact/calendar';
 import {useLocation} from 'react-router-dom';
-
+import AdminNavbar from "./Role/AdminNavbar";
+import moment from "moment";
 export const BookProperty = (props) => {
   let { defaultPmode,defaultPtype } = props;
   let location = useLocation();
-  let { pid, address } = location?.state || {};
+  let { pid, address,rent } = location?.state || {};
 
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
-  const [fromAndToDate, setFromAndToDate] = useState(null);
-
+  const [from_date, setFromdate] = useState(null);
+  const [till_date, setTilldate] = useState(null);
+  const calAmount =(from_date,till_date,rent) => {
+    let totaldays=moment(new Date(till_date)).diff(moment(new Date(from_date)), "days");
+    return totaldays*rent;
+  }
   const formik = useFormik({
     initialValues: {
       pid: pid,
@@ -36,12 +41,15 @@ export const BookProperty = (props) => {
     },
    
     onSubmit: (data) => {
-        let allocateDate = fromAndToDate;
-        let from_date =  allocateDate?.[0]?.toLocaleDateString();
-        let till_date = allocateDate?.[1]?.toLocaleDateString();
-        let param={...data, from_date, till_date,total_amt:parseInt(data.total_amt),amount:parseInt(data.amount)}
+       
+     
+        let fromDate =moment(new Date(from_date)).format("MM/DD/YYYY");
+        let tillDate =moment(new Date(till_date)).format("MM/DD/YYYY") ;
+        
+        let totalAmount=calAmount(from_date,till_date,rent);
+        let param={...data,"from_date": fromDate,"till_date": tillDate,total_amt:parseInt(totalAmount),amount:parseInt(data.amount)}
       setFormData(param);
-      debugger
+    
 
       let userId = localStorage.getItem('userid');
       axios.post(`http://localhost:8080/bookproperty/${userId}`, param).then(
@@ -54,7 +62,8 @@ export const BookProperty = (props) => {
       setShowMessage(true);
 
       formik.resetForm();
-      setFromAndToDate(null);
+      setFromdate(null);
+      setTilldate(null);
     },
   });
 
@@ -76,7 +85,9 @@ export const BookProperty = (props) => {
   </>);
 
   return (
-    <Homepage>
+    <>
+    <AdminNavbar/>
+     
       <Card className="form-demo" header={header} >
         <Dialog
           visible={showMessage}
@@ -142,9 +153,18 @@ export const BookProperty = (props) => {
               <div className="p-field">
                 <span className="p-float-label p-input-icon-right">
                  
-                    <Calendar id="range" value={fromAndToDate} onChange={(e) => setFromAndToDate(e.value)} selectionMode="range" readOnlyInput />
+                    <Calendar id="basic" name="from_date" value={from_date} onChange={(e) => setFromdate(e.value)} dateFormat="mm-dd-yy"  readOnlyInput />
    
-                  <label htmlFor="fromandtodate">Check In and Out Date</label>
+                  <label htmlFor="fromdate">Check In </label>
+                </span>
+              </div>
+
+              <div className="p-field">
+                <span className="p-float-label p-input-icon-right">
+                 
+                    <Calendar id="basic" name="till_date" value={till_date} onChange={(e) => setTilldate(e.value)} dateFormat="mm-dd-yy"  readOnlyInput />
+   
+                  <label htmlFor="tilldate">Check Out </label>
                 </span>
               </div>
 
@@ -153,9 +173,9 @@ export const BookProperty = (props) => {
                   <InputText
                     id="total_amt"
                     name="total_amt"
-                    value={formik.values.total_amt}
-                    onChange={formik.handleChange}
-                    
+                    value={calAmount(from_date,till_date,rent)}
+                    //onChange={formik.handleChange}
+                    disabled={true}
                   />
                   <label
                     htmlFor="total_amt"
@@ -179,7 +199,7 @@ export const BookProperty = (props) => {
                     htmlFor="amount"
                     
                   >
-                    Amount*
+                    Booking Amount*
                   </label>
                 </span>
                
@@ -219,15 +239,15 @@ export const BookProperty = (props) => {
           </div>
         </div>
       </Card>
-    </Homepage>
+      </>
   );
 };
 
 BookProperty.defaultProps = {
     defaultPmode: [
       {
-        value: "cash",
-        label: "Cash",
+        value: "card",
+        label: "Card",
       },
       {
         value: "upi",

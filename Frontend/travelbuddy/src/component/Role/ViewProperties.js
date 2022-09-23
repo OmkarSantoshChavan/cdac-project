@@ -10,18 +10,18 @@ function ViewProperties(props) {
     let { result } = props;
     let navigate = useNavigate();
 
-    const onPropertyBook = (pid, address) => {
+    const onPropertyBook = (pid, address,rent) => {
         let userId = localStorage.getItem('userid');
-        navigate('/bookproperty', { state: { userId, pid, address } });
+        navigate('/bookproperty', { state: { userId, pid, address,rent } });
     }
 
     const Header = () => <Image alt="Card" src={ImageSrc} />;
 
     const Footer = (props) => {
-        let { pid, address } = props
+        let { pid, address,rent } = props
         return <div>
             <Button style={{ marginRight: '5px' }} icon="pi pi-heart-fill" iconPos="right" label="Favorite" />
-            <Button icon="pi pi-check" iconPos="right" label="Book" onClick={() => onPropertyBook(pid, address)} />
+            <Button icon="pi pi-check" iconPos="right" label="Book" onClick={() => onPropertyBook(pid, address,rent)} />
         </div>
     }
 
@@ -36,7 +36,7 @@ function ViewProperties(props) {
                     return <Card
                         className={`property-cards`}
                         key={`property-${key}`}
-                        footer={<Footer pid={pid} address={address}/>}
+                        footer={<Footer pid={pid} address={address} rent={rent}/>}
                         header={<Header card={card} />}
                     >
                         <div className='card-content'>
