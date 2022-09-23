@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,11 +10,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.customexception.ResourceNotFoundException;
 import com.example.demo.dto.BookPropertyDTO;
 import com.example.demo.dto.BookingDetailsDTO;
 import com.example.demo.dto.DateValidateDTO;
-import com.example.demo.dto.PropertyDetailsDTO;
 import com.example.demo.pojos.Booking;
 import com.example.demo.pojos.Payment;
 import com.example.demo.pojos.PropertyDetails;
@@ -40,19 +39,25 @@ public class CustomerService {
 	
 	public boolean dateValidate(int pid,DateValidateDTO d) throws ParseException {
 		boolean flag=true;
+		DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
+		Date d1 = (Date)formatter.parse(d.getFrom_date());
+		Date d2 = (Date)formatter.parse(d.getTill_date());
+//		Date d1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d.getFrom_date());
+//		Date d2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d.getTill_date());
 		
-		Date d1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d.getFrom_date());
-		Date d2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d.getTill_date());
 		Timestamp checkin=new Timestamp(d1.getTime());
 		Timestamp checkout=new Timestamp(d2.getTime());
 		
 		List<BookingDetailsDTO> bdata=brepo.getBookings(pid);
 		for(BookingDetailsDTO b:bdata) {
-			Date d3=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(b.getFrom_date());
-			Date d4=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(b.getTill_date());
+			Date d3 = (Date)formatter.parse(b.getFrom_date());
+			Date d4 = (Date)formatter.parse(b.getTill_date());
+			
+//			Date d3=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(b.getFrom_date());
+//			Date d4=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(b.getTill_date());
 			Timestamp t1=new Timestamp(d3.getTime());
 			Timestamp t2=new Timestamp(d4.getTime());
-			
+
 			if((t1.compareTo(checkin)<=0)&&(checkin.compareTo(t2)<=0)) {
 				flag=false;
 			}

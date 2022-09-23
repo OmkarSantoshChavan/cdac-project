@@ -45,7 +45,7 @@ export const BookProperty = (props) => {
 
     onSubmit: (data) => {
 
-
+      debugger
       let fromDate = moment(new Date(from_date)).format("MM/DD/YYYY");
       let tillDate = moment(new Date(till_date)).format("MM/DD/YYYY");
 
@@ -87,8 +87,9 @@ export const BookProperty = (props) => {
     <h1 className="p-text-center">Book Property</h1>
   </>);
 
-  const onCheckAvailability  = ( ) =>{
+  const onCheckAvailability  = (e) =>{
     debugger
+    e.preventDefault();
     let param = {
       pid,
       from_date : from_date?.toLocaleDateString(),
@@ -98,6 +99,12 @@ export const BookProperty = (props) => {
     axios.post(`http://localhost:8080/validatedates/${pid}`, param).then(
       (response) => {
         console.log(response);
+        if(response.data.result){
+          setCheckAvailability(true);
+        }
+        else{
+          alert(response.data.message)
+        }
       }, (error) => {
         console.log(error);
       }
@@ -256,7 +263,7 @@ export const BookProperty = (props) => {
 
 
                 <Button type="submit" label="Submit" className="p-mt-2" onClick={()=> formik.handleSubmit()}/> </> : 
-                 <Button  label="Check Availability" className="adasd" onClick={()=> onCheckAvailability()} />
+                 <Button  label="Check Availability" className="adasd" onClick={(e)=> onCheckAvailability(e)} />
               }
             </form>
           </div>
