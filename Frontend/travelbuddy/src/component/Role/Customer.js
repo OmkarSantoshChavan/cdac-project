@@ -33,13 +33,10 @@ function Customer(props) {
 
     }
 
-    
-
     const footer = (
         <span>
             <Button className='profile-button' label="Edit Profile" onClick={handleProfile} />
             <Button className='profile-button' label="View Properties" onClick={handleProperties} />
-
         </span>
     );
 

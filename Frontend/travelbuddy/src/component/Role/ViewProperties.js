@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'primereact/card';
 import { Image } from 'primereact/image';
-import ImageSrc from '../Images/BG1.jpg';
+import { getImageList } from '../../imageHelper';
 import './Style.css';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ function ViewProperties(props) {
         navigate('/bookproperty', { state: { userId, pid, address,rent } });
     }
 
-    const Header = () => <Image alt="Card" src={ImageSrc} />;
+    const Header = (index) => <Image alt="Card" src={getImageList[index]} />;
 
     const Footer = (props) => {
         let { pid, address,rent } = props
@@ -35,7 +35,7 @@ function ViewProperties(props) {
                         className={`property-cards`}
                         key={`property-${key}`}
                         footer={<Footer pid={pid} address={address} rent={rent}/>}
-                        header={<Header card={card} />}
+                        header={<Header card={card}  key={key} />}
                     >
                         <div className='card-content'>
                             <div className='card-property-name'>
