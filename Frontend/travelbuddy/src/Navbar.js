@@ -37,6 +37,14 @@ function Navbar(props) {
 
         <div className="admin_navbar">
           <Button
+            label="Login"
+            onClick={handleloginuser}
+            className="register-button"
+          />
+        </div>
+
+        <div className="admin_navbar">
+          <Button
             label="About us"
             onClick={handleaboutus}
             className="register-button"
@@ -48,14 +56,7 @@ function Navbar(props) {
             label="Contact Us"
             onClick={handlecontactus}
             className="register-button"
-          />
-        </div>
-
-        <div className="admin_navbar">
-          <Button
-            label="Login"
-            onClick={handleloginuser}
-            className="register-button"
+            style={{fontSize:'13px'}}
           />
         </div>
         </>

@@ -84,7 +84,7 @@ export const BookProperty = (props) => {
 
   const header = (<>
     <img src={Image} alt="hyper" height={80} style={{ width: "20%" }} className="mb-3" />
-    <h1 className="p-text-center">Book Property</h1>
+    <h3 className="p-text-center">Book Property</h3>
   </>);
 
   const onCheckAvailability  = (e) =>{

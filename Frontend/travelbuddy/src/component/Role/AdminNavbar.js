@@ -34,6 +34,7 @@ function AdminNavbar(props) {
             label="Logout"
             onClick={handleLogout}
             className="register-button"
+            style={{fontSize:'16px'}}
           />
         </div>
       </header>

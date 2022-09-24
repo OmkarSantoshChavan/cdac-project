@@ -25,8 +25,10 @@ function App() {
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    width: '100vw',
-    height: '100vh'
+    top: 0,
+    left: 0,
+    minWidth: '100%',
+    height: '100vh',
   };
   
   return (
