@@ -20,11 +20,9 @@ function ViewProperties(props) {
     const Footer = (props) => {
         let { pid, address,rent } = props
         return <div>
-            <Button style={{ marginRight: '5px' }} icon="pi pi-heart-fill" iconPos="right" label="Favorite" />
             <Button icon="pi pi-check" iconPos="right" label="Book" onClick={() => onPropertyBook(pid, address,rent)} />
         </div>
     }
-
 
     return <div className='property-container'>
         {

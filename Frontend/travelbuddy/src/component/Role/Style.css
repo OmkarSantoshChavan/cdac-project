@@ -50,7 +50,18 @@
     margin-top: -63px;
 }
 
-.admin_navbar {
-    margin: 18px;
-    
+.navbar-container{
+    display: flex;
+    width: 100%;
+}
+
+.logo-image{
+  width: 20%;
+}
+
+.navbar-buttons{
+    width: 80%;
+    display: flex;
+    margin-left: 52%;
+    margin-top: 13px;
 }
