@@ -15,11 +15,13 @@ import { Card } from "primereact/card";
 import Image from '../Images/TravelBuddy.png';
 import ".././Style.css";
 import Navbar from "../../Navbar";
+import { useLocation } from "react-router-dom";
 
 export const Edit_profile = (props) => {
 
     const [showMessage, setShowMessage] = useState(false);
     const [formData, setFormData] = useState({});
+    const location = useLocation();
 
     let { name, email, password, address, contact_no } = location?.state || {};
 
