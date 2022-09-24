@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'primereact/card';
 import { Image } from 'primereact/image';
-import { getImageList } from '../../imageHelper';
+import { getImageList } from '../imageHelper';
 import './Style.css';
 import { Button } from 'primereact/button';
 import { useNavigate } from 'react-router-dom';

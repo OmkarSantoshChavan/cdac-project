@@ -2,7 +2,6 @@ import './App.css';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
-import Registeruser from './component/Registeruser';
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import Homepage from './component/Homepage';
 import Customer from './component/Role/Customer';
@@ -38,7 +37,6 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/loginform" element={<LoginForm />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/registeruser" element={<Registeruser />} />
             <Route path="/customer" element={<Customer />} />
             <Route path="/owner" element={<Owner />} />
             <Route path="/admin" element={<Admin />} />
